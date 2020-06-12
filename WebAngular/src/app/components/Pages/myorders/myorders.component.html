@@ -1,0 +1,110 @@
+<app-topmenu></app-topmenu>
+
+
+<div class="profile-page">
+    <div class="page-header header-filter" data-parallax="true" style="background-color: #fe4066;">
+    </div>
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar"><img [src]=prfileimage alt="Circle Image"
+                                    class="img-raised rounded-circle img-fluid">
+                            </div>
+                            <div class="name">
+
+                                <h3 class="title">Orders</h3>
+                            </div>
+                            <div *ngIf="noorders">
+                                <h5>No orders</h5>
+                            </div>
+                            <div *ngIf="!noorders" class="example-header">
+                                <mat-form-field>
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                                </mat-form-field>
+                            </div>
+
+                            <div *ngIf="!noorders" class="example-container">
+
+                                <mat-table [dataSource]="dataSource" matSort>
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell fxFlex="10px" *matHeaderCellDef mat-sort-header> ID
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                                        <mat-footer-cell *matFooterCellDef>
+                                            <div>
+                                                <table width="100%">
+                                                    <thead>
+                                                        <tr>
+
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </mat-footer-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="InoviceNo">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> InoviceNo </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.InoviceNo}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Name">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.Name}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Vendor">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Vendor </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.Vendor}} </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Varient">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Varient </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.Varient}} </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Color">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.Color}}
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Status">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> <span *ngIf="row.Status == 0">Pending</span>
+                                            <span *ngIf="row.Status == 1">Delivered</span> </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="OrderDate">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> OrderDate </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.OrderDate| date: 'dd/MM/yyyy'}}
+                                        </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="DeliverDate">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> DeliverDate
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.DeliverDate | date: 'dd/MM/yyyy'}}
+                                        </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="Total">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">$ {{row.Total}} </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                    <mat-footer-row *matFooterRowDef="['id']"></mat-footer-row>
+                                </mat-table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</div>

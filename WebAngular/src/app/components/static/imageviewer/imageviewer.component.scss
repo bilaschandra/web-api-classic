@@ -1,0 +1,83 @@
+@import "../../../../color.scss";
+
+
+.slider {
+    //background: #fff;
+   // width: calc(38% + 200px);
+   // height:452px;
+    //height:auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    //box-shadow: 0px 2px 8px #ffffff40;
+    //border-radius: 4px;
+    overflow: hidden;
+    display:flex;
+    width: calc(200px + 38%);    
+    @include for-medium-large-screens {
+    width: calc(200px + 22%);
+    }
+    
+    .floorslides{
+      width: 100%;
+      img{
+        width:100%;
+        height: auto;
+        display:none;
+        &.show{
+          display:block;
+        }
+      }
+      
+      
+      
+    }
+    .floortabs {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      .tab {
+        color:#3e3e3e;
+        background-color: #d6d6d6;
+        position: static;
+        width:82px;
+        height:30px;
+        font:400 10px/12px 'Lato';  
+        border-radius: 3px;
+        opacity: 0.7;
+        
+        &.activated{
+          opacity:1;
+        }
+
+      }
+      &:active{
+        opacity:1;
+      }
+      
+    }
+    img.close-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 20px;
+      border-radius: 50px;
+  
+      background-color: white;
+      padding: 5px;
+      box-shadow: 0px 2px 8px #d0cccc;
+      //float: right;
+      //margin-right: 10px;
+      cursor: pointer;
+      //margin-top: 14px;
+      
+    }  
+}
+
+  

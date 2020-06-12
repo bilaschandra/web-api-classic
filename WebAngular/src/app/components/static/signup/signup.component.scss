@@ -1,0 +1,84 @@
+body {
+    padding-top: 4.2rem;
+    padding-bottom: 4.2rem;
+    background: rgba(0, 0, 0, 0.76);
+  }
+  
+  .close_div{
+    text-align: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Open Sans,sans-serif;
+  color: #2a0b4c;
+  }
+  .close{
+    text-align: center;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Open Sans,sans-serif;
+  color: #2a0b4c;
+  width: 30px;
+  border-radius: 50px;
+  background-color: #fe4066;;
+  padding: 5px;
+  box-shadow: 0 2px 8px #d0cccc;
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  }
+  
+  a {
+    text-decoration: none !important;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+    cursor: pointer;
+    color: #fe4066;
+  }
+  .myform {
+    position: relative;
+    display: -ms-flexbox;
+  
+    display: flex;
+    padding: 1rem;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 1.1rem;
+    outline: 0;
+    max-width: 500px;
+  }
+  
+  .btn_div{
+    padding: 2vw;
+  }
+  .tx-tfm {
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+    color: #fe4066;
+  }
+  .mybtn {
+    border-radius: 20px;  
+    border: 2px solid #fe4066;
+    background: rgba(255, 255, 255, 0.3);
+    float: left;
+    color: #fe4066;
+    &:hover {
+      background: #fe4066;
+      color: white;
+      border-color: transparent;
+    }
+  }
+   
+  .login{
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+    cursor: pointer;
+    color: #fe4066;
+  }

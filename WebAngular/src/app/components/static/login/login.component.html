@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">            
+                <div class="myform form ">
+                        <div (click)="closeModal('login')" class="close_div">
+                                <img   src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close"></div>
+                    <div class="logo mb-3">
+                        <div class="col-md-12 text-center">
+                            <h1>Log In</h1>
+                        </div>
+                    </div>
+                   
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">User Name</label>
+                            <input [(ngModel)]="username" type="UserName" name="UserName" class="form-control" id="User Name"
+                                aria-describedby="User Name" placeholder="User Name">
+                        </div>
+                      
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input  [(ngModel)]="password" type="password" name="password" id="password" class="form-control"
+                                aria-describedby="emailHelp" placeholder="Enter Password">
+                        </div>
+                     
+                        <div class="col-md-12 text-center btn_div">
+                                <div class="warning" style="color:red; padding: 1vw;">{{warningMsg}}</div>
+                            <button (click)="login()"  type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Log in</button>
+                        </div>
+                        
+                         
+                        <div class="form-group">
+                            <p class="text-center">Don't have account? <span class="signup" (click)="switch('signup')" id="signup">Sign up here</span></p>
+                        </div>
+                    
+
+                </div>
+             
+          
+        </div>
+    </div>
+</div>

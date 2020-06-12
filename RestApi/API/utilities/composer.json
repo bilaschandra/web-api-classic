@@ -1,0 +1,8 @@
+{
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "aws/aws-sdk-php":"2.7.*",
+        "phpmailer/phpmailer": "^6.1",
+        "stripe/stripe-php": "^7.36"
+    }
+}

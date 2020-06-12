@@ -1,0 +1,274 @@
+<div class="main-raised tabbable-panel">
+    <h4>{{ type | uppercase }}</h4>
+        <div class="tabbable-line">
+            
+            <ul class="nav nav-tabs ">
+              
+                <li (click)="selectedtab('Edit')" [ngClass]="{'active': isedit, 'tab_li': true}">
+                    <span  data-toggle="tab">Edit</span>
+                </li>
+                <li (click)="selectedtab('Delete')" [ngClass]="{'active': isdelete, 'tab_li': true}">
+                    <span  data-toggle="tab">Delete</span>
+                </li>
+            </ul>
+            <div class="tab-content">
+               
+                <div *ngIf="isedit" [ngClass]="{'active': isedit, 'tab-pane': true}" id="Edit">
+                     <!-- start -->
+                <div class="container" style="overflow-y: auto;">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <h2>Order's</h2>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     <div class="col-md-4 mb-3">
+                                        <mat-form-field>
+                                                <mat-label>Select an option</mat-label>
+                                                <mat-select [(value)]="selected">
+                                                  <mat-option >None</mat-option>
+                                                  <mat-option value="issue_date">Order Date</mat-option>
+                                                  <mat-option value="invoice">Invoice No.</mat-option>
+                                                  <mat-option value="delivered_date">Deliver Date</mat-option>
+                                                  <mat-option value="status">Status</mat-option>
+                                                  <mat-option value="order_quantity">Quantity</mat-option>
+                                                  <mat-option value="order_total_price">Total price</mat-option>
+                                                  <mat-option value="contact_number">Contact Number</mat-option>
+                                                  <mat-option value="billing_street_address">Billing Address</mat-option>
+                                                  <mat-option value="billing_city_address">Billing City</mat-option>
+                                                  <mat-option value="billing_state_address">Billing State</mat-option>
+                                                  <mat-option value="billing_country_address">Billing Country</mat-option>
+                                                  <mat-option value="billing_zip">Billing zip</mat-option>
+                                                  <mat-option value="shipping_street_address">shipping Address</mat-option>
+                                                  <mat-option value="shipping_city_address">shipping city </mat-option>
+                                                  <mat-option value="shipping_state_address">shipping state </mat-option>
+                                                  <mat-option value="shipping_country_address">shipping country </mat-option>
+                                                  <mat-option value="shipping_zip">shipping zip</mat-option>
+                                                </mat-select>
+                                              </mat-form-field>
+                                            </div>
+                                            <div class="col-md-4 mb-3">
+                                        <mat-form-field >
+                                                <input matInput [(ngModel)]="filterValue"  placeholder="Filter">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                            <table class="table table-bordered edittable">
+                                <thead>
+                                    <tr>
+                                            <th class="editthfont">Action</th>                                            
+                                            <th class="editthfont">Invoice</th>
+                                            <th class="editthfont">Order Date</th>
+                                            <th class="editthfont">Deliver Date</th>
+                                            <th class="editthfont">Status</th>
+                                            <th class="editthfont">Quantity</th>
+                                            <th class="editthfont">Total price</th>
+                                            <th class="editthfont">Contact Number</th>
+                                            <th class="editthfont">Billing Address</th>
+                                            <th class="editthfont">Billing City</th>
+                                            <th class="editthfont">Billing State</th>
+                                            <th class="editthfont">Billing Country</th>
+                                            <th class="editthfont">Billing zip</th>
+                                            <th class="editthfont">shipping Address</th>
+                                            <th class="editthfont">shipping city </th>
+                                            <th class="editthfont">shipping state </th>
+                                            <th class="editthfont">shipping country </th>
+                                            <th class="editthfont">shipping zip</th>
+                                         
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let order of orders  | filter : selected : filterValue  '>
+                                        <td>
+                                        <span class="add" (click)="toggle(order.id);saveorder(order)"
+                                        style="display: none" [attr.id]="'add_' + order.id" title="Add"
+                                        data-toggle="tooltip"><i class="material-icons save">&#xe161;</i></span>
+                                        <span class="edit" (click)="toggle(order.id)"
+                                        [attr.id]="'edit_' + order.id" title="Edit" data-toggle="tooltip"><i
+                                        class="material-icons">&#xE254;</i></span>
+
+                                        </td>
+                                        <td style="word-break: break-all !important;">{{order.invoice}}</td>
+                                        <td>
+                                        <input [(ngModel)]="order.issue_date" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <ng-container *ngIf="order.delivered_date == null; else elseTemplate">
+                                                    <input [(ngModel)]="order.delivered_date" [disabled]="opendd!=order.id" 
+                                                    class="edituser" type="text" required autocomplete="off">
+                                            </ng-container>
+                                            <ng-template #elseTemplate>
+                                                    <input [(ngModel)]="order.delivered_date" [disabled]="opendd!=order.id"
+                                                    class="edituser" type="date" required autocomplete="off">
+                                            </ng-template>
+                                            
+                                       
+                                        </td>
+                                        <td>
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" disabled=true                                        
+                                        [checked]='order.status == "0" ? false : true'
+                                        (change)='order.status = order.status == "0" ? "1" : "0"'
+                                        [attr.id]="'status_'+order.id">
+                                        <label class="custom-control-label" [attr.for]="'status_'+order.id">
+                                        </label>
+                                        </div>        
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.order_quantity" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.order_total_price" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.contact_number" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.billing_street_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+
+                                        <td>
+                                        <input [(ngModel)]="order.billing_city_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.billing_state_address" [disabled]="opendd!=order.id" class="edituser"
+                                        type="text" required autocomplete="off">
+                                        </td>
+
+                                        <td>
+                                        <input [(ngModel)]="order.billing_country_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.billing_zip" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.shipping_street_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.shipping_city_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.shipping_state_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+
+                                        <td>
+                                        <input [(ngModel)]="order.shipping_country_address" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                        <input [(ngModel)]="order.shipping_zip" [disabled]="opendd!=order.id"
+                                        class="edituser" type="text" required autocomplete="off">
+                                        </td>
+
+
+                                       
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+    
+                    <!-- End -->
+    
+    
+                </div>
+                <div *ngIf="isdelete" [ngClass]="{'active': isdelete, 'tab-pane': true}"id="Delete">
+                    <div class="container">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <h2>Order's</h2>
+                                    </div>                                    
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-4 mb-3">
+                                           <mat-form-field>
+                                                   <mat-label>Select an option</mat-label>
+                                                   <mat-select [(value)]="selected">
+                                                     <mat-option >None</mat-option>
+                                                     <mat-option value="invoice">Invoice No.</mat-option>
+                                                     <mat-option value="issue_date">Order Date</mat-option>
+                                                     <mat-option value="delivered_date">Deliver Date</mat-option>
+                                                     <mat-option value="status">Status</mat-option>
+                                                     <mat-option value="order_quantity">Quantity</mat-option>
+                                                     <mat-option value="order_total_price">Total price</mat-option>
+                                                     <mat-option value="contact_number">Contact Number</mat-option>
+                                                     
+                                                   </mat-select>
+                                                 </mat-form-field>
+                                               </div>
+                                               <div class="col-md-4 mb-3">
+                                           <mat-form-field >
+                                                   <input matInput [(ngModel)]="filterValue"  placeholder="Filter">
+                                               </mat-form-field>
+                                           </div>
+                                       </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                                   <th>Invoice No.</th>                 
+                                <th>Ordered date</th>
+                                <th>Delivered Date</th>
+                                <th>Status</th>
+                                <th>Quantity</th>
+                                <th>Total price</th>
+                                <th>Contact Number</th>
+                                <th>Billing Addres</th> 
+                                <th>Shipping Address</th>
+                                <th>Action</th>
+                                 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order of orders   | filter : selected : filterValue  ; ">
+                                        <td style="word-break: break-all !important;">
+                                                {{order.invoice}}
+                                        </td>
+                                        <td>{{order.issue_date | date: 'dd/MM/yyyy'}}</td>
+                                        <td><span *ngIf="order.delivered_date !=null">{{order.delivered_date | date: 'dd/MM/yyyy'}}</span>
+                                            <span *ngIf="order.delivered_date ==null">Awaiting delivery</span></td>
+                                        <td>
+                                        <ng-container *ngIf='order.status == "1"; else elseTemplate'>
+                                        Delivered   
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                        Pending 
+                                        </ng-template>                   
+                                        </td>
+                                        <td>{{order.order_quantity}}</td>
+                                        <td>${{order.order_total_price}}  </td>
+                                        <td>{{order.contact_number}}</td>
+                                        <td>{{order.billing_street_address}} &nbsp; {{order.billing_city}} &nbsp; {{order.billing_state}} <br> {{order.billing_country}} </td>
+                                        <td>{{order.shipping_street_address}} &nbsp; {{order.shipping_city}} &nbsp; {{order.shipping_state}} <br> {{order.shipping_country}} </td>
+                                        <td><span  class="delete" (click)="deleteorder(order.id)"  title="Add" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></span>
+                                                
+                                             </td>
+                                      
+                                    </tr>
+    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

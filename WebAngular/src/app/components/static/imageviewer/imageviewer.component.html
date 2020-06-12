@@ -1,0 +1,6 @@
+ <div *ngIf="Id == 'image'" class="slider">
+    <div class="floorslides">
+           <img *ngIf="ImageUrl != null" [src]="ImageUrl" [ngClass]="{'show':showImage}">        
+     </div>
+     <img src="../../../../assets/closeicon.svg" class="close-icon" (click)="closeModal('spotimage')"  alt="close">     
+   </div>

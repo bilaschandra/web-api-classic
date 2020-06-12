@@ -1,0 +1,16 @@
+
+  
+   <div (click)="navigate(product)" class="card  shadow bg-white rounded" style="width: 18rem;cursor:pointer">
+       <span  *ngIf="product.discount != '0'" class="badgeicn"><mat-icon class="icon ">local_offer</mat-icon>{{product.discount}}&#37;</span> 
+        <img class="card-img-top" [src]="product.image_url" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"><span>{{product.product_name}}</span></h5>
+              
+           <div class="price_rapper"> <span *ngIf="product.discount != '0'" style="text-decoration: line-through;" class="card-price">$ {{product.sell_price}}</span> &nbsp; <span class="card-price">$ {{calculateprice(product.sell_price,product.discount)}}</span></div>
+           
+           <div class="des_wrapper"> <p class="card-text"> {{product.description}}</p></div>
+        </div>
+    </div>
+
+<!-- .../100px180       max-height: 160px;
+    max-width: 286px; -->

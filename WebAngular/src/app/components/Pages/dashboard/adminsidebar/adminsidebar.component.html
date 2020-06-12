@@ -1,0 +1,30 @@
+<div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="avatar">
+                    <img [src]=profileimg alt="Circle Image" class="Circle_admin">
+                    <div class="row">
+                        <div class="text-center btn ">
+                            <button (click)="logout()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Log
+                                out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-heading">Dashboard</div>
+        <ul id="accordion" class="accordion">
+            <li *ngFor="let item of items; let i = index" [ngClass]="{'active':opendd==i}">
+                <div class="menu" (click)="toggle(i);optselected(item)">{{ item }}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="page-header" data-parallax="true" style="background-color: #fe4066;">
+
+    <app-admincategory [(type)]=type *ngIf="type == 'category'"></app-admincategory>
+    <app-adminorder [(type)]=type *ngIf="type == 'order'"></app-adminorder>
+    <app-adminproduct [(type)]=type *ngIf="type == 'product'"></app-adminproduct>
+    <app-adminuser [(type)]=type *ngIf="type == 'user'"></app-adminuser>
+</div>

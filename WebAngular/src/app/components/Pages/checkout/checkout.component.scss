@@ -1,0 +1,37 @@
+.container{
+    position: relative;
+    top: 7vw;
+    padding-bottom: 10vw;
+}
+
+.btn_div{
+    width: 90%;    
+    position: relative;
+    padding-bottom: 5vw;
+  }
+
+  
+  .tx-tfm {
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+    color: #fe4066;
+  }
+  .mybtn {
+    border-radius: 20px;  
+    border: 2px solid #fe4066;
+    background: rgba(255, 255, 255, 0.3);
+    float: left;
+    color: #fe4066;
+    &:hover {
+      background: #fe4066;
+      color: white;
+      border-color: transparent;
+    }
+  }
+ 
+  .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #fe4066;
+    background-color: #fe4066;
+}
+
+ 

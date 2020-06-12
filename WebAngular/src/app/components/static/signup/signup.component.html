@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+
+
+            <div class="myform form ">
+                <div (click)="closeModal('signup')" class="close_div">
+                    <img src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close">
+                </div>
+                <div class="logo mb-3">
+                    <div class="col-md-12 text-center">
+                        <h1>Signup</h1>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputfirstname">First Name</label>
+                    <input [(ngModel)]="user.FirstName" type="text" name="firstname" class="form-control" id="firstname" aria-describedby="firstnameHelp"
+                        placeholder="Firstname">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputlastname">Last Name</label>
+                    <input  [(ngModel)]="user.LastName"  type="text" name="lastname" class="form-control" id="lastname" aria-describedby="lastnameHelp"
+                        placeholder="Lastname">
+                </div>
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input  [(ngModel)]="user.UserName"  type="UserName" name="UserName" class="form-control" id="UserName" aria-describedby="UserNamelHelp"
+                        placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <label    for="exampleInputEmail1">Email address</label>
+                    <input  [(ngModel)]="user.Email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label  for="exampleInputpassword">Password</label>
+                    <input  [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control"
+                        aria-describedby="PasswordHelp" placeholder="Password">
+                </div>
+                <div class="col-md-12 ">
+                        <div  class="form-group">
+                            <p class="text-center"><span style="color: red" class="login" id="signin">{{warning}}</span></p>
+                        </div>
+                    </div>
+                <div class="col-md-12 text-cmb-3 btn_div">
+                    <button (click)="submit()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For
+                        Free</button>
+                </div>
+                <div class="col-md-12 ">
+                    <div (click)="switch('login')" class="form-group">
+                        <p class="text-center"><span class="login" id="signin">Already have an account?</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

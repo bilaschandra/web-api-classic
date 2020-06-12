@@ -1,0 +1,205 @@
+.main-raised {
+  background: #fff;
+  position: absolute;
+  top: 5vw;
+  z-index: 3;
+  width: 80%;
+  /* left: 15vw; */
+  margin: 0vw 5vw;
+  margin: 0vw 18vw 0vw;
+  border-radius: 6px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+///////////////////////////////
+.tab_li {
+  width: 7%;
+  height: 2.5vw;
+  text-align: center;
+  margin-right: 1px;
+  padding-top: 0.3vw;
+}
+
+.tabbable-panel {
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+/* Default mode */
+.tabbable-line > .nav-tabs {
+  border: 2px;
+  margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+  border: 2px solid #fe4066;
+  border-radius: 5px;
+}
+.tabbable-line > .nav-tabs > li > span {
+  border: 0px;
+  margin-right: 0;
+  color: #fe4066;
+}
+.tabbable-line > .nav-tabs > li > span > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open,
+.tabbable-line > .nav-tabs > li:hover {
+  background-color: #ab354c;
+  color: white !important;
+}
+.tabbable-line > .nav-tabs > li.open > span,
+.tabbable-line > .nav-tabs > li:hover > span {
+  border: 0px;
+  background: none !important;
+  color: white !important;
+}
+.tabbable-line > .nav-tabs > li.open > span > i,
+.tabbable-line > .nav-tabs > li:hover > span > i {
+  color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu,
+.tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+  position: relative;
+  background-color: #fe4066;
+  color: white;
+  border-radius: 5px;
+}
+.tabbable-line > .nav-tabs > li.active > span {
+  border: 0;
+  color: white;
+}
+.tabbable-line > .nav-tabs > li.active > span > i {
+  color: #404040;
+}
+.tabbable-line > .tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+
+  border: 4px solid #fe4066;
+  padding: 1vw;
+}
+.portlet .tabbable-line > .tab-content {
+  padding-bottom: 0;
+}
+
+.btn {
+  width: 40%;
+}
+
+.tx-tfm {
+  font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+  color: #fe4066;
+}
+.mybtn {
+  border-radius: 20px;
+  border: 2px solid #fe4066;
+  background: rgba(255, 255, 255, 0.3);
+  float: left;
+  color: #fe4066;
+  &:hover {
+    background: #fe4066;
+    color: white;
+    border-color: transparent;
+  }
+}
+//////////////////////////////////////////////////////////////////////////////
+
+body {
+  color: #404e67;
+  background: #f5f7fa;
+  font-family: "Open Sans", sans-serif;
+}
+.table-wrapper {
+  width: 100%;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.table-title {
+  padding-bottom: 10px;
+  margin: 0 0 10px;
+}
+.table-title h2 {
+  margin: 6px 0 0;
+  font-size: 22px;
+}
+.table-title .add-new {
+  float: right;
+  height: 30px;
+  font-weight: bold;
+  font-size: 12px;
+  text-shadow: none;
+  min-width: 100px;
+  border-radius: 50px;
+  line-height: 13px;
+}
+.table-title .add-new i {
+  margin-right: 4px;
+}
+table.table {
+  table-layout: fixed;
+}
+table.table tr th,
+table.table tr td {
+  border-color: #e9e9e9;
+}
+table.table th i {
+  font-size: 13px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+table.table th:last-child {
+  width: 100px;
+}
+table.table td span {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  min-width: 24px;
+}
+table.table td span.add {
+  color: #27c46b;
+}
+table.table td span.edit {
+  color: #ffc107;
+}
+table.table td span.delete {
+  color: #e34724;
+}
+table.table td i {
+  font-size: 19px;
+}
+table.table td span.add i {
+  font-size: 24px;
+  margin-right: -1px;
+  position: relative;
+  top: 3px;
+}
+table.table .form-control {
+  height: 32px;
+  line-height: 32px;
+  box-shadow: none;
+  border-radius: 2px;
+}
+table.table .form-control.error {
+  border-color: #f50000;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #fe4066;
+  background-color: #fe4066;
+}
+
+.edituser {
+  width: 100%;
+  border: none;
+  background-color: white;
+}
+
+/////////////////////////////////////

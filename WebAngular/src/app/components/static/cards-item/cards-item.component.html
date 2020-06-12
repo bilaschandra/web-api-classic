@@ -1,0 +1,29 @@
+ 
+    <div class="container">
+        <div><h4 *ngIf="selcategory_id != '-1'" >{{category}}&nbsp; {{vendor_name}}</h4> </div>
+        <div *ngFor="let product of (products     
+        | seach : searchquery
+        | filter : 'category_id' : selcategory_id 
+        | filteritems : selcategory_id : vendor_name
+        | range : 'sell_price' : lowerlimit : upperlimit
+        | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize) "
+         class="cardscontainer">
+            <app-products [(product)] = product [(cart)] ="cart"></app-products>
+        </div>
+        <div *ngIf="products.length > 0" class="pagination_wrapper"> 
+                 <ngb-pagination 
+                 [collectionSize]="(products | seach : searchquery | filter : 'category_id' : selcategory_id | filteritems : selcategory_id : vendor_name | range : 'sell_price' : lowerlimit : upperlimit).length " 
+                 [pageSize]="pageSize" 
+                 [(page)]="page"
+                 [maxSize]="5" [rotate]="true" 
+                 [ellipses]="false"
+                 [boundaryLinks]="true"></ngb-pagination>
+        </div>
+        
+        <div style="margin: auto;" *ngIf="products.length == 0"> <h6>No products for {{category}} category </h6></div>
+ 
+    </div>
+ <!--  
+               
+      
+  -->

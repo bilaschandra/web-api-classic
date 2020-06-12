@@ -1,0 +1,38 @@
+.form-control{    
+    width: 45vw;
+}
+
+
+ 
+.search_input{
+    border: 2px solid #fe4066;  
+}
+
+  .serach{
+    height: 2.45vw;
+    min-height: 38px;
+    position: relative;
+    right: 0.2vw;
+    border: 2px solid #fe4066;
+    background:white;
+    color:  #fe4066;
+ // box-shadow:   0 8px 10px #d0cccc;
+  cursor: pointer; 
+  &:hover {
+    background: #fe4066;
+    color: white;
+    border-color: transparent;
+  }
+  }
+
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+
+  .mobile{
+    @media (max-width: 768px) {
+  
+    padding: 5vw;
+  }
+}

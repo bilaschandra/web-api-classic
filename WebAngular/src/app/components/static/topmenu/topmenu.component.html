@@ -1,0 +1,63 @@
+<div class="tp_container" id="page-content-wrapper">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <!-- <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
+
+        <a class="store_div"><i class="material-icons store">store</i></a>
+        <span (click)="Home()" class="StoreTitle">BD Electronics</span>
+        <div class="hide">
+            <app-search (searchevent)="receiveMessage($event)"></app-search>
+        </div>
+        <button (click)="setcalls()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div [ngClass]="{'collapse ': show, 'navbar-collapse' : show}" style="width: 100%;" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 collapse_mob">
+                <li  class="nav-item">
+                      <div class="hide_mob" style="padding-left: 4vw;">
+                        <app-search (searchevent)="receiveMessage($event)"></app-search>
+                    </div>
+                </li>
+                <li *ngIf="isLoggedIn() != true" (click)="openModal('login')" class="nav-item"> <a class="login">Log in
+                    </a> </li>
+                <li *ngIf="isLoggedIn() != true" (click)="openModal('signup')" class="nav-item"> <a
+                        class=" signup">Register</a> </li>
+                <li *ngIf="isLoggedIn() == true" (click)="logout()" class="nav-item"> <a class=" signup">Logout</a>
+                </li>
+
+                <li (click)="viewcart()" class="nav-item ">
+                        <button class="cart_div" mat-icon-button >
+                                <mat-icon class="icon  cart">shopping_cart</mat-icon>
+                                <span  class="badge" *ngIf="cart.length > 0">{{cart.length}}</span>
+                              </button>
+                    <!-- <a class="cart_div"><i class="material-icons cart">shopping_cart</i> <span class="badge badge-light">4</span></a> -->
+                    
+                </li>
+
+               
+                <div  class="dropdown">
+                        <li   class="dropbtn"*ngIf="isLoggedIn() == true" class="nav-item">
+                                <a class="user_div"><i class="material-icons user">account_circle</i></a>
+                            </li>  
+                            <div class="dropdown-content">
+                           <p (click)="viewprofile()">My Profile</p>
+                           <p (click)="vieworders()">My Orders</p>
+                        </div>
+                     </div>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+
+
+<jw-modal id="login">
+    <app-login id="login"></app-login>
+</jw-modal>
+
+<jw-modal id="signup">
+    <app-signup id="signup"></app-signup>
+</jw-modal>

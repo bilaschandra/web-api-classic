@@ -1,0 +1,458 @@
+<div class="main-raised tabbable-panel">
+    <h4>{{ type | uppercase }}</h4>
+    <div class="tabbable-line">
+
+        <ul class="nav nav-tabs ">
+            <li (click)="selectedtab('Create')" [ngClass]="{'active': iscreate, 'tab_li': true}">
+                <span data-toggle="tab">Create</span>
+            </li>
+            <li (click)="selectedtab('Edit')" [ngClass]="{'active': isedit, 'tab_li': true}">
+                <span data-toggle="tab">Edit</span>
+            </li>
+            <li (click)="selectedtab('Delete')" [ngClass]="{'active': isdelete, 'tab_li': true}">
+                <span data-toggle="tab">Delete</span>
+            </li>
+            <li (click)="selectedtab('Deletevarient')"
+                [ngClass]="{'active': isdeletevarient, 'tab_li': true, lasttab:true}">
+                <span data-toggle="tab">DeleteVarient</span>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div *ngIf="iscreate" [ngClass]="{'active': iscreate, 'tab-pane': true}" id="Create">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="validationproduct_name">Product Name</label>
+                                <input [(ngModel)]="product.product_name" type="text" class="form-control"
+                                    id="validationproduct_name" placeholder="Prdouct  Name" required autocomplete="off">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter Product Name.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="validationvendor">Vendor</label>
+                                <input [(ngModel)]="product.vendor" type="text" class="form-control"
+                                    id="validationvendor" placeholder="Vendor" required autocomplete="off">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter Vendor.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="select-size">
+                                <span>Category</span>
+                                <select (change)="selectecategory($event)" class="size">
+                                    <option value=-1>Select Category</option>
+                                    <option *ngFor="let item of catitems" [value]=item.id>{{item.category}}</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea [(ngModel)]="product.description" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+
+
+                        <div class="card mb-3 subimag">
+                            <div (click)="openexplorer('coverimage')" class="card-body">
+                                <img class="card-img-top" [src]="coverimage" alt="Bologna">
+                                <span>Cover Image</span>
+                                <input id="coverimage" type="file" accept="image/*"
+                                    (change)="handleFileInput($event,'coverimage')">
+                            </div>
+                        </div>
+
+                        <div (click)="openexplorer('image1')" class="card mb-3 subimag">
+                            <div class="card-body">
+                                <img class="card-img-top" [src]="image1" alt="Bologna">
+                                <span>Image</span>
+                                <input id="image1" type="file" accept="image/*"
+                                    (change)="handleFileInput($event,'image1')">
+
+                            </div>
+                        </div>
+                        <div (click)="openexplorer('image2')" class="card mb-3 subimag">
+                            <div class="card-body ">
+                                <img class="card-img-top" [src]="image2" alt="Bologna">
+                                <span>Image</span>
+                                <input id="image2" type="file" accept="image/*"
+                                    (change)="handleFileInput($event,'image2')">
+
+                            </div>
+                        </div>
+                        <div (click)="openexplorer('image3')" class="card mb-3 subimag">
+                            <div class="card-body">
+                                <img class="card-img-top" [src]="image3" alt="Bologna">
+                                <span>Image</span>
+                                <input id="image3" type="file" accept="image/*"
+                                    (change)="handleFileInput($event,'image3')">
+
+                            </div>
+                        </div>
+                        <div (click)="openexplorer('image4')" class="card mb-3 subimag">
+                            <div class="card-body">
+                                <img class="card-img-top" [src]="image4" alt="Bologna">
+                                <span>Image</span>
+                                <input id="image4" type="file" accept="image/*"
+                                    (change)="handleFileInput($event,'image4')">
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <!-- start -->
+
+
+                    <div class="container">
+                        <div class="table-wrapper">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-8 md-5">
+                                        <h4>Product Details</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Color</th>
+                                        <th>Varient</th>
+                                        <th>Purchase Price $</th>
+                                        <th>Selling Price $</th>
+                                        <th>Discount %</th>
+                                        <th>Quantity</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of attributes; ">
+                                        <td>
+                                            <input [(ngModel)]="item.color" placeholder="Color" class="editcat"
+                                                type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input [(ngModel)]="item.varient" placeholder="Varient" class="editcat"
+                                                type="text" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input [(ngModel)]="item.purchase_price" placeholder="Purchase Price $"
+                                                class="editcat" type="number" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input [(ngModel)]="item.sell_price" (keyup)=Additeration()
+                                                placeholder="Selling Price $" class="editcat" type="number" required
+                                                autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input [(ngModel)]="item.discount" maxlength="2" placeholder="Discount %"
+                                                class="editcat" type="number" required autocomplete="off">
+                                        </td>
+                                        <td>
+                                            <input [(ngModel)]="item.quantity" placeholder="Quantity" class="editcat"
+                                                type="number" required autocomplete="off">
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </div>
+
+                <div class="text-center btn ">
+                    <button (click)="create()" type="submit" [disabled]=issaveable
+                        class=" btn btn-block mybtn btn-primary tx-tfm">Create</button>
+
+                </div>
+
+
+
+            </div>
+            <div *ngIf="isedit" [ngClass]="{'active': isedit, 'tab-pane': true}" id="Edit">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>Products</h2>
+                                </div>
+                            </div>
+
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Status</th>
+                                    <th>Vendor</th>
+                                    <th>Description</th>                                    
+                                    <th>Category</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let product of allproducts; ">
+                                <tr>
+                                    <td><img class="img_size" [src]=product.image_url alt=""></td>
+                                    <td><input [(ngModel)]="product.product_name" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+
+                                    <td>
+                                        <ng-container *ngIf="opendd!=product.id; else outer">
+                                            <ng-container *ngIf='product.instock == "1"; else inner'>
+                                                Instock
+                                            </ng-container>
+                                            <ng-template #inner>
+                                                Out of Stock
+                                            </ng-template>
+                                        </ng-container>
+                                        <ng-template #outer>
+                                            <mat-form-field>
+                                                <mat-label>Select an option</mat-label>
+                                                <mat-select [(value)]="product.instock ">
+                                                    <mat-option>None</mat-option>
+                                                    <mat-option value="1">In Stock</mat-option>
+                                                    <mat-option value="LastName">Out of Stock</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </ng-template>
+                                    </td>
+                                    <td><input [(ngModel)]="product.vendor" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                    <td><input [(ngModel)]="product.description" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                    
+                                    <td>
+                                            <ng-container *ngIf="opendd!=product.id; else outer_catergory">
+                                              {{getcategory(product.category_id)}}
+                                            </ng-container>
+                                            <ng-template #outer_catergory>
+    
+                                                <mat-form-field>
+                                                    <mat-label>Select an option</mat-label>
+                                                    <mat-select [(value)]="product.category_id ">
+                                                    <mat-option *ngFor="let item of catitems" [value]=item.id>{{item.category}}</mat-option>
+                                                        
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </ng-template>
+                                        </td>
+
+
+                                    <td>
+                                        <span class="add" (click)="toggle(product.id);saveproduct(product)" style="display: none" [attr.id]="'add_' + product.id" title="Add" data-toggle="tooltip"><i class="material-icons save">&#xe161;</i></span>
+                                        <span class="edit" (click)="toggle(product.id)" [attr.id]="'edit_' + product.id" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></span>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Color</th>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Varient</th>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Purchase Price $</th>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Selling Price $</th>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Discount %</th>
+                                                <th style=" white-space: nowrap;padding:0.75rem 3.16rem !important">Quantity</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of getprodvar(product.id);">
+                                                    <!-- <tr *ngFor="let item of attributes_db | filter :'product_id':product.id;"> -->
+
+                                                <td><input [(ngModel)]="item.color" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                                <td><input [(ngModel)]="item.varient" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                                <td><input [(ngModel)]="item.purchase_price" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td> 
+                                                <td><input [(ngModel)]="item.sell_price" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                                <td><input [(ngModel)]="item.discount" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+                                                <td><input [(ngModel)]="item.quantity" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isdelete" [ngClass]="{'active': isdelete, 'tab-pane': true}" id="Delete">
+
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>Products</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="product_name">Product Name</mat-option>
+                                            <mat-option value="vendor">Vendor</mat-option>
+                                            <mat-option value="instock">Status</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div *ngIf="selected != 'instock' " class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="selected == 'instock' " class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="filterValue">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="1">In stock</mat-option>
+                                            <mat-option value="0">Out of Stock</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Status</th>
+                                    <th>Vendor</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of allproducts  | filter : selected : filterValue ; ">
+                                    <td><img class="img_size" [src]=product.image_url alt=""></td>
+                                    <td>{{product.product_name}}</td>
+                                    <td>
+                                        <ng-container *ngIf='product.instock == "1"; else elseTemplate'>
+                                            Instock
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                            Out of Stock
+                                        </ng-template>
+                                    </td>
+                                    <td>{{product.vendor}}</td>
+                                    <td>{{product.description}}</td>
+                                    <td><span class="delete" (click)="deleteproduct(product.id)" title="Add"
+                                            data-toggle="tooltip"><i class="material-icons">&#xE872;</i></span>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="isdeletevarient" [ngClass]="{'active': isdeletevarient, 'tab-pane': true}" id="Deletevarient">
+                <!-- start -->
+
+
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8 md-5">
+                                    <h4>Product Details</h4>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="color">Color</mat-option>
+                                            <mat-option value="varient">Varient</mat-option>
+                                            <mat-option value="purchase_price">Purchase Price</mat-option>
+                                            <mat-option value="sell_price">Selling Price</mat-option>
+                                            <mat-option value="discount">Discount</mat-option>
+                                            <mat-option value="Quantity">quantity</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div *ngIf="selected != 'instock' " class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Color</th>
+                                    <th>Varient</th>
+                                    <th>Purchase Price $</th>
+                                    <th>Selling Price $</th>
+                                    <th>Discount %</th>
+                                    <th>Quantity</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of attributes_db  | filter : selected : filterValue ;">
+                                    <td>{{item.color}}</td>
+                                    <td>{{item.varient}}</td>
+                                    <td>{{item.purchase_price}}</td>
+                                    <td>{{item.sell_price}}</td>
+                                    <td>{{item.discount}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td><span class="delete" (click)="deletevareint(item.id)" title="Add"
+                                            data-toggle="tooltip"><i class="material-icons">&#xE872;</i></span>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end -->
+
+            </div>
+        </div>
+    </div>
+</div>

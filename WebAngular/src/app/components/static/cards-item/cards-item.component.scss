@@ -1,0 +1,32 @@
+.container{
+    position: relative;
+    padding: 4vw 2vw 2vw 6vw;
+    margin: auto;
+}
+.cardscontainer{
+    display:  inline-flex;;    
+    padding: 1vw 1vw 1vw 1vw;
+    margin: 0 auto
+
+}
+
+.pagination_wrapper{
+    margin: 1vw 24vw;
+}
+ 
+ngb-pagination ::ng-deep a {
+    color: #fe4066 !important;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: #fe4066 !important;
+    background-color: white;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem #fe4066;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem #fe4066;
+  }

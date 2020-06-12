@@ -1,0 +1,247 @@
+<div class="main-raised tabbable-panel">
+    <h4>{{ type | uppercase }}</h4>
+    <div class="tabbable-line">
+
+        <ul class="nav nav-tabs ">
+            <li (click)="selectedtab('Create')" [ngClass]="{'active': iscreate, 'tab_li': true}">
+                <span data-toggle="tab">Create</span>
+            </li>
+            <li (click)="selectedtab('Edit')" [ngClass]="{'active': isedit, 'tab_li': true}">
+                <span data-toggle="tab">Edit</span>
+            </li>
+            <li (click)="selectedtab('Delete')" [ngClass]="{'active': isdelete, 'tab_li': true}">
+                <span data-toggle="tab">Delete</span>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div *ngIf="iscreate" [ngClass]="{'active': iscreate, 'tab-pane': true}" id="Create">
+                <div class="form-group">
+                    <label for="exampleInputfirstname">First Name</label>
+                    <input [(ngModel)]="user.FirstName" type="text" name="firstname" class="form-control" id="firstname"
+                        aria-describedby="firstnameHelp" placeholder="Firstname">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputlastname">Last Name</label>
+                    <input [(ngModel)]="user.LastName" type="text" name="lastname" class="form-control" id="lastname"
+                        aria-describedby="lastnameHelp" placeholder="Lastname">
+                </div>
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input [(ngModel)]="user.UserName" type="UserName" name="UserName" class="form-control"
+                        id="UserName" aria-describedby="UserNamelHelp" placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input [(ngModel)]="user.Email" type="email" name="email" class="form-control" id="email"
+                        aria-describedby="emailHelp" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpassword">Password</label>
+                    <input [(ngModel)]="user.password" type="password" name="password" id="password"
+                        class="form-control" aria-describedby="PasswordHelp" placeholder="Password">
+                </div>
+                <div class="text-center btn ">
+                    <button (click)="createuser()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Create
+                        User</button>
+
+                </div>
+
+
+
+            </div>
+            <div *ngIf="isedit" [ngClass]="{'active': isedit, 'tab-pane': true}" id="Edit">
+
+                <!-- start -->
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>User's</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="FirstName">First Name</mat-option>
+                                            <mat-option value="LastName">Last Name</mat-option>
+                                            <mat-option value="Email">Email</mat-option>
+                                            <mat-option value="UserName">User Name</mat-option>
+
+
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Active</th>
+                                    <th>New Password</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of edituser  | filter : selected : filterValue  ; ">
+                                    <td>
+                                        <input [(ngModel)]="item.UserName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.FirstName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.LastName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.Email" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" disabled=true
+                                                [checked]='item.isactive == "0" ? false : true'
+                                                (change)='item.isactive = item.isactive == "0" ? "1" : "0"'
+                                                [attr.id]="'status_'+item.UserID">
+                                            <label class="custom-control-label" [attr.for]="'status_'+item.UserID">
+                                            </label>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.password" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off"
+                                            placeholder="********">
+
+                                    </td>
+
+
+                                    <td>
+                                        <span class="add" (click)="toggle(item.UserID);saveuser(item)"
+                                            style="display: none" [attr.id]="'add_' + item.UserID" title="Add"
+                                            data-toggle="tooltip"><i class="material-icons save">&#xe161;</i></span>
+                                        <span class="edit" (click)="toggle(item.UserID)"
+                                            [attr.id]="'edit_' + item.UserID" title="Edit" data-toggle="tooltip"><i
+                                                class="material-icons">&#xE254;</i></span>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- End -->
+
+
+            </div>
+            <div *ngIf="isdelete" [ngClass]="{'active': isdelete, 'tab-pane': true}" id="Delete">
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>User's</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="FirstName">First Name</mat-option>
+                                            <mat-option value="LastName">Last Name</mat-option>
+                                            <mat-option value="Email">Email</mat-option>
+                                            <mat-option value="UserName">User Name</mat-option>
+
+
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Active</th>
+
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of edituser  | filter : selected : filterValue ; ">
+                                    <td>
+                                        <input [(ngModel)]="item.UserName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.FirstName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.LastName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.Email" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <ng-container *ngIf='item.isactive == "1"; else elseTemplate'>
+                                            Active
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                            InActive
+                                        </ng-template>
+                                    </td>
+
+                                    <td>
+                                        <span class="delete" (click)="deleteuses(item.UserID)" title="Add"
+                                            data-toggle="tooltip"><i class="material-icons">&#xE872;</i></span>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

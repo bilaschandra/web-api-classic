@@ -1,0 +1,63 @@
+.container{
+ top:8vw;
+ margin: 0 auto;    
+ position: relative;
+ padding: 2vw 0vw 10vw 5vw;
+}
+
+.media-object{
+    width: 16vw;
+    height: 9vw;
+}
+
+.thumbnail{
+    padding: 0vw 1vw 0vw 0vw;
+}
+
+.text-success{ 
+    font-family: segoe UI;
+    font-style: regular; 
+    font-weight: bolder;
+    font-size: 11px;
+    line-height: 1;
+}
+
+
+.btn_div_checkout{
+    width: 90%;    
+    position: relative;
+    padding-left: 1vw;
+  }
+
+  
+.btn_div_cntshopping{
+    width: 90%;    
+    position: relative; 
+  }
+  
+  .tx-tfm {
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+    color: #fe4066;
+  }
+  .mybtn {
+    border-radius: 20px;  
+    border: 2px solid #fe4066;
+    background: rgba(255, 255, 255, 0.3);
+    float: left;
+    color: #fe4066;
+    &:hover {
+      background: #fe4066;
+      color: white;
+      border-color: transparent;
+    }
+  }
+
+  .btn_wrapper{
+    display: inline-flex;
+    float: right;
+    width: 100%;
+    /* margin-left: 22vw; */
+    padding: 0vw 0vw 0vw 35vw;
+}
+
+ 

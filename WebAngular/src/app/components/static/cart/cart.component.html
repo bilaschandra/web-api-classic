@@ -1,0 +1,104 @@
+<app-topmenu [(cart)] = "cart"></app-topmenu>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cart ;  let i=index">
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                        [src]="item.image_url"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="#">{{item.product_name}}</a></h4>
+                                    <h5 class="media-heading"> by <a href="#">{{item.vendor}}</a></h5>
+                                    <span style="width: 100%">Varient: </span><span
+                                        class="text-success">{{item.varient}} <br></span>
+                                    <span>Color: </span><span class="text-success">{{item.color}}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <input (change)="test()" [(ngModel)]=item.quantity type="email" class="form-control">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${{item.discount}}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center">
+                            <strong>${{calculatetotal(item.quantity,item.discount)}}</strong></td>
+                        <td (click)="removeitem(item)" class="col-sm-1 col-md-1" style="text-align: center;">
+                                <span class="material-icons" style="color: red;cursor : pointer;">
+                                        delete_sweep
+                                        </span>
+                    </tr>
+
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <h5>Subtotal</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5><strong>${{calculatesubtotal()}}</strong></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <h5>Estimated shipping</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5><strong>${{shipping}}</strong></h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <h3>Total</h3>
+                        </td>
+                        <td class="text-right">
+                            <h3><strong>${{total}}</strong></h3>
+                        </td>
+                    </tr>
+                 
+                </tbody>
+            </table>
+            <div class="btn_wrapper">
+                    <div class="btn_div_cntshopping ">
+                        <button type="submit" (click)="shopping()" class=" btn btn-block mybtn btn-primary tx-tfm">Continue Shopping</button>
+                    </div>
+                    <div class="btn_div_checkout">
+                        <button (click)="checkout()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Checkout</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>
+
+<!-- 
+<div class="btn_div ">
+        <button (click)="checkout()" type="submit"
+            class=" btn btn-block mybtn btn-primary tx-tfm">Checkout</button>
+    </div>
+
+    <div class="btn_div ">
+            <button type="submit" (click)="shopping()" class=" btn btn-block mybtn btn-primary tx-tfm"> Continue
+                Shopping</button>
+        </div>
+         -->

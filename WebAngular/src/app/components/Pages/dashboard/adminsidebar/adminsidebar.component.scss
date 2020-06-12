@@ -1,0 +1,209 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+ body {
+    overflow-x: hidden;
+  }
+  #wrapper{
+    position:fixed;
+    top: 0vw;
+    left: 0vw;
+  }
+
+  .caption div {
+    box-shadow: 0 0 5px #C8C8C8;
+    transition: all 0.3s ease 0s;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.img-circle {
+    border-radius: 0;
+}
+
+.img_set{
+    margin: 2vw 0vw 0vw 1vw;
+    margin: auto;
+}
+.ratio {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    width: 100%;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.img-responsive {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+  
+  #sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+    padding: 16.875rem  6.5rem  0.875rem 1.25rem;   
+    font-size: 1.20rem;
+    font-weight: bold;
+    font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;   
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    transition: 0.15s;
+    cursor: pointer;  
+    display: block;
+    line-height: 36px; 
+    color: #fe4066;
+    
+  }
+  
+  #sidebar-wrapper .list-group {
+    width: 15rem;
+  }
+  
+  #page-content-wrapper {
+    min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+  }
+  
+  @media (min-width: 768px) {
+    #sidebar-wrapper {
+      margin-left: 0;
+    }
+  
+    #page-content-wrapper {
+      min-width: 0;
+      width: 100%;
+    }
+  
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -15rem;
+    }
+  }
+   
+
+  .accordion {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    background: #fff;
+    border-radius: 4px;
+  }
+  
+  .accordion .menu {
+    position: relative;
+    padding: 15px 15px 15px 15px;
+    
+    color: #4d4d4d;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 0.4s ease;
+   
+  }
+  
+  .accordion li:last-child .menu {
+    border-bottom: 0;
+  }
+  
+  .accordion li i {
+    position: absolute;
+    top: 1.2rem;
+    left: 11.5rem;
+    color: #595959;
+    transition: all 0.4s ease;
+  }
+  
+  .accordion li i.material-icons {
+    right: 1rem;
+    left: auto;
+  }
+  
+ 
+  .accordion li.active .menu {
+      background-color: #fe4066;
+    color:  white;
+  }
+   
+  .accordion li{
+
+  :hover{
+    color: #fe4066;
+}
+}
+  
+ul {
+  list-style-type: none;
+  padding : 0px !important;
+}
+
+ 
+//////////////////////////
+
+ .page-header {
+    background-position: center;
+  }
+    
+  .page-header {
+    height: 100vh;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar{
+    position: absolute;
+  }
+
+  .Circle_admin{
+    width: 100%;
+    padding: 2vw;
+    height: 199px;
+    border-radius: 73%;
+  }
+ 
+ /////////////////////////////////////////////////////////////////////
+
+ .btn{
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
+  margin-left: 1.5vw;
+  position: relative;
+}
+
+ 
+.tx-tfm {
+  font-family: "Regular", "Segoe UI", Helvetica Neue, Helvetica, sans-serif;
+  color: #fe4066;
+}
+.mybtn {
+  border-radius: 20px;  
+  border: 2px solid #fe4066;
+  background: rgba(255, 255, 255, 0.3);
+  float: left;
+  color: #fe4066;
+  &:hover {
+    background: #fe4066;
+    color: white;
+    border-color: transparent;
+  }
+}
