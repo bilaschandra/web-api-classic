@@ -19,6 +19,7 @@ chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
+/RestApi/.idea
 /.idea
 .project
 .classpath
