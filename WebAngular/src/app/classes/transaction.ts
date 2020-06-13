@@ -6,11 +6,12 @@ export class Transaction {
                 private _invoice_no: string = "",
                 private _transaction_no :string = "",
                 private _status: boolean = true,
-                private _amount:number = null,
+                private _Amount:number = null,
                 private _currency : string = "",
                 private _error_messaage :string = "",
-                private _success_message :string = "" ,
-                private _transaction_date :string =""  ) { }
+                private _success_message :string = "",
+                private _transaction_date :string =""
+                ) { }
 
 
 set id(_val: string) { this._id = _val; }
@@ -22,8 +23,8 @@ get user_id(): string { return this._user_id; }
 set address_id(_val: string) { this._address_id = _val; }
 get address_id(): string { return this._address_id; }
 
-set invocie_no(_val: string) { this._invoice_no = _val; }
-get invocie_no(): string { return this._invoice_no; }
+set invoice_no(_val: string) { this._invoice_no = _val; }
+get invoice_no(): string { return this._invoice_no; }
 
 set transaction_no(_val: string) { this._transaction_no = _val; }
 get transaction_no(): string { return this._transaction_no; }
@@ -31,8 +32,8 @@ get transaction_no(): string { return this._transaction_no; }
 set status(_val: boolean) { this._status = _val; }
 get status(): boolean { return this._status; } 
 
-set amount(_val: number) { this._amount = _val; }
-get amount(): number { return this._amount; }
+set Amount(_val: number) { this._Amount = _val; }
+get Amount(): number { return this._Amount; }
 
 set currency(_val: string) { this._currency = _val; }
 get currency(): string { return this._currency; }
@@ -50,10 +51,10 @@ public objcpy(    transaction: Transaction) {
     this._id = transaction.id;
     this._user_id = transaction.user_id;
     this._address_id = transaction.address_id;
-    this._invoice_no = transaction.invocie_no;
+    this._invoice_no = transaction.invoice_no;
     this._transaction_no =transaction.transaction_no;
     this._status = transaction.status;
-    this._amount = transaction.amount;
+    this._Amount = transaction.Amount;
     this._currency = transaction.currency;
     this._error_messaage = transaction.error_messaage;
     this._success_message = transaction.success_message;
@@ -65,10 +66,10 @@ public bindHttpJson(data: {}): void {
     if (data["id"] != null) this.id = data["id"];
     if (data["user_id"] != null) this.user_id = data["user_id"];
     if (data["address_id"] != null) this.address_id = data["address_id"];
-    if (data["invoice_no"] != null) this.invocie_no = data["invoice_no"];
+    if (data["invoice_no"] != null) this.invoice_no = data["invoice_no"];
     if (data["transaction_no"] != null) this.transaction_no = data["transaction_no"];
     if (data["status"] != null) this.status = data["status"];
-    if (data["Amount"] != null) this.amount = data["Amount"];    
+    if (data["Amount"] != null) this.Amount = data["Amount"];    
     if (data["currency"] != null) this.error_messaage = data["currency"];
     if (data["error_message"] != null) this.error_messaage = data["error_message"];
     if (data["success_message"] != null) this.success_message = data["success_message"];

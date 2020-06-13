@@ -33,7 +33,7 @@ class User{
 
     function readalluser(){
       // select all query
-      $query  ="SELECT * FROM tbl_user where User_role = 'user';";      
+      $query  ="SELECT * FROM tbl_user"; // where User_role = 'user';      
       $stmt = $this->conn->prepare($query);
       $stmt->execute();
       return $stmt;

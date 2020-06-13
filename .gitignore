@@ -10,7 +10,9 @@
 # dependencies
 /node_modules
 /WebAngular/node_modules
+/WebAngular/proxy.conf.json
 /RestApi/API/utilities/vendor
+/RestApi/API/utilities/.vscode
 
 # profiling files
 chrome-profiler-events*.json

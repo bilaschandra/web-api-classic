@@ -22,6 +22,7 @@
 
   if(
     !is_string($data->UserName) &&
+    !is_string($data->User_role) &&
     !is_string($data->FirstName) &&
     !is_string($data->LastName) &&
     !is_string($data->Email) &&
@@ -34,13 +35,13 @@
 
   if ($data->password != null ){
     $password_hash = password_hash($data->password, PASSWORD_DEFAULT);  
-    $query2 = "UPDATE  `tbl_user`   SET `Email`=  '$data->Email',  `FirstName`= '$data->FirstName',  `LastName`=  '$data->LastName',   `isactive`= b'$data->isactive',
+    $query2 = "UPDATE  `tbl_user`   SET `Email`=  '$data->Email', `User_role`=  '$data->User_role',  `FirstName`= '$data->FirstName',  `LastName`=  '$data->LastName',   `isactive`= b'$data->isactive',
               `Username` = '$data->UserName',  `Hash` =  '$password_hash'  WHERE  `UserID`= $data->UserID;";
 
   }
   else{
     
-    $query2 = "UPDATE  `tbl_user`   SET `Email`=  '$data->Email',  `FirstName`= '$data->FirstName',  `LastName`=  '$data->LastName',   `isactive`= b'$data->isactive',
+    $query2 = "UPDATE  `tbl_user`   SET `Email`=  '$data->Email', `User_role`=  '$data->User_role', `FirstName`= '$data->FirstName',  `LastName`=  '$data->LastName',   `isactive`= b'$data->isactive',
               `Username` = '$data->UserName'  WHERE  `UserID`= $data->UserID;";
 
   }

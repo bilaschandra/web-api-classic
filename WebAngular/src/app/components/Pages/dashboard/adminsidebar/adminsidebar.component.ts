@@ -28,7 +28,7 @@ export class AdminsidebarComponent implements OnInit {
   user: User = new User();
 
   constructor(private sessionservice :SessionService,private userservice:UserService,private router :Router) { 
-    this.items.push("Category","Order","User","Product");
+    this.items.push("Category","Order","User","Product","Transaction");
     this.getuser();
   }
 

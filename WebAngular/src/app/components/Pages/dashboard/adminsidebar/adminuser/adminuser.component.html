@@ -90,6 +90,7 @@
                                     <th>User Name</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Role</th>
                                     <th>Email</th>
                                     <th>Active</th>
                                     <th>New Password</th>
@@ -109,6 +110,10 @@
                                     </td>
                                     <td>
                                         <input [(ngModel)]="item.LastName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.User_role" [disabled]="opendd!=item.UserID"
                                             class="edituser" type="text" required autocomplete="off">
                                     </td>
                                     <td>
@@ -193,6 +198,7 @@
                                     <th>User Name</th>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Role</th>
                                     <th>Email</th>
                                     <th>Active</th>
 
@@ -212,6 +218,10 @@
                                     </td>
                                     <td>
                                         <input [(ngModel)]="item.LastName" [disabled]="opendd!=item.UserID"
+                                            class="edituser" type="text" required autocomplete="off">
+                                    </td>
+                                    <td>
+                                        <input [(ngModel)]="item.User_role" [disabled]="opendd!=item.UserID"
                                             class="edituser" type="text" required autocomplete="off">
                                     </td>
                                     <td>

@@ -1,0 +1,92 @@
+<div class="main-raised tabbable-panel">
+    <h4>{{ type | uppercase }}</h4>
+    <div class="tabbable-line">
+
+        <ul class="nav nav-tabs ">
+            <li (click)="selectedtab('Edit')" [ngClass]="{'active': isedit, 'tab_li': true}">
+                <span data-toggle="tab">Edit</span>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div *ngIf="isedit" [ngClass]="{'active': isedit, 'tab-pane': true}" id="Edit">
+
+                <!-- start -->
+                <div class="container">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>User's</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="invoice_no">Invoice No</mat-option>
+                                            <mat-option value="transaction_no">Transaction No</mat-option>
+                                            <mat-option value="status">Status</mat-option>
+                                            <mat-option value="transaction_date">Date</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Invoice No</th>
+                                    <th>Transaction No</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of editTransaction  | filter : selected : filterValue  ; ">
+                                    <td>{{item.id}}</td>
+                                    <td style="word-break: break-all !important;">{{item.invoice_no}}</td>                                    
+                                    <td style="word-break: break-all !important;">{{item.transaction_no}}</td>
+                                    <td style="word-break: break-all !important;">{{item.Amount}}</td>
+                                    <td>{{item.transaction_date}}</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" disabled=true
+                                                [checked]='item.status == "0" ? false : true'
+                                                (change)='item.status = item.status == "0" ? "1" : "0"'
+                                                [attr.id]="'status_'+item.id">
+                                            <label class="custom-control-label" [attr.for]="'status_'+item.id">
+                                            </label>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <span class="add" (click)="toggle(item.id);saveTransaction(item)"
+                                            style="display: none" [attr.id]="'add_' + item.id" title="Add"
+                                            data-toggle="tooltip"><i class="material-icons save">&#xe161;</i></span>
+                                        <span class="edit" (click)="toggle(item.id)"
+                                            [attr.id]="'edit_' + item.id" title="Edit" data-toggle="tooltip"><i
+                                                class="material-icons">&#xE254;</i></span>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End -->
+            </div>
+        </div>
+    </div>
+</div>

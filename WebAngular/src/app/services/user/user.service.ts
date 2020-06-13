@@ -79,8 +79,9 @@ export class UserService {
 
       "UserID": user.UserID,          
       "UserName": user.UserName,
+      "User_role": user.User_role,
       "FirstName": user.FirstName,
-      "LastName": user.LastName,
+      "LastName": user.LastName,      
       "Email": user.Email,
       "isactive" : user.isactive,
       "password" :user.password

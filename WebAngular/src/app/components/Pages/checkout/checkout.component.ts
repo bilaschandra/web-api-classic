@@ -88,7 +88,7 @@ export class CheckoutComponent implements OnInit {
     var myDate = formatDate(new Date(), 'dd/MM/yyyy', 'en');
     var stringmessage = ""
     var bodyheader = "Below are the details of your order <br>";
-    var reciverdetail = "<strong>Invoice No:</strong>" + this.transaction.invocie_no + " <br>" + "Ordered by :" + this.user.UserName + " <br>" + " Ordered date :" + myDate + "<br> Contact Number : " + userdetail.contact_number + "<br> Shipping Address : " + userdetail.shipping_street_address + " " + userdetail.shipping_city_address + " " +
+    var reciverdetail = "<strong>Invoice No:</strong>" + this.transaction.invoice_no + " <br>" + "Ordered by :" + this.user.UserName + " <br>" + " Ordered date :" + myDate + "<br> Contact Number : " + userdetail.contact_number + "<br> Shipping Address : " + userdetail.shipping_street_address + " " + userdetail.shipping_city_address + " " +
       userdetail.shipping_state_address + " " + userdetail.shipping_country_address + " " + userdetail.shipping_zip;
       var Emailfooter = " <br> Your order will be shipped in 3 working days" + " <br> Best regards," + " <br> BD Electronics." ;   
 
@@ -163,7 +163,7 @@ export class CheckoutComponent implements OnInit {
 
 
           this.transaction.transaction_no = element['transaction_no'];
-          this.transaction.invocie_no = element['invoice_no'];
+          this.transaction.invoice_no = element['invoice_no'];
           this.transaction.status = element['status'];
           this.transaction.transaction_date = this.transformDate(element['transaction_date']);
           this.transaction.currency = element['currency'];

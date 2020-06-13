@@ -41,7 +41,7 @@
 			$product_item=array(
                 
             "UserID" => $UserID,
-            "User_role" => $FirstName,                    
+            "User_role" => $User_role,                    
             "UserName" => $UserName,
             "FirstName" => $FirstName,
             "LastName" => $LastName,
