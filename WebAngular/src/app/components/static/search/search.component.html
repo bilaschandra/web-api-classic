@@ -4,10 +4,15 @@
 </div>
 <div *ngIf="Landingpage" class="input-group md-form form-sm form-1 pl-0 mobile">
   
-    <input (keyup.enter)="sendMessage()" [(ngModel)]="searchstring" class="form-control my-0 py-1 search_input" type="text" placeholder="Search" aria-label="Search">
+    <input (keyup.enter)="sendMessage()" [(ngModel)]="searchstring"
+     class="form-control my-0 py-1 search_input" type="text" placeholder="Search" aria-label="Search">
     <div (click)="sendMessage()" class="input-group-prepend">
-        <span class="input-group-text serach" id="basic-text1">
-            <span class="material-icons">search</span></span>
+        <!-- <span class="input-group-text serach" id="basic-text1">
+            <span class="material-icons">search</span>
+        </span> -->
+        <span class="input-group-text serach2">
+            <span class="material-icons">search</span>
+        </span>
       </div>
   </div>
 

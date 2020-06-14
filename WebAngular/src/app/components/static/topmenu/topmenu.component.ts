@@ -58,8 +58,8 @@ export class TopmenuComponent implements OnInit {
     var navExtras: NavigationExtras = {};
     navExtras.state = {
       "cart" : this.cart,
-      "search" :this.searchquery
     }
+    this.receiveMessage('');
     this.router.navigate(['/'], navExtras);
   }
 

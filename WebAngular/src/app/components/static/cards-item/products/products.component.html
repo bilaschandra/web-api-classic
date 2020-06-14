@@ -1,7 +1,7 @@
 
   
    <div (click)="navigate(product)" class="card  shadow bg-white rounded" style="width: 18rem;cursor:pointer">
-       <span  *ngIf="product.discount != '0'" class="badgeicn"><mat-icon class="icon ">local_offer</mat-icon>{{product.discount}}&#37;</span> 
+       <span  *ngIf="product.discount != '0'" class="badgeicn"><mat-icon class="icon ">local_offer</mat-icon>-{{product.discount}}&#37;</span> 
         <img class="card-img-top" [src]="product.image_url" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title"><span>{{product.product_name}}</span></h5>

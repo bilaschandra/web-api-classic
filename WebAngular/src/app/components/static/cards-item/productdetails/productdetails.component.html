@@ -2,85 +2,90 @@
  
       <div class="content">
          
-        <div class="pop-up clearfix">
+        <div class="pop-up row">
           <!--GALLERY-->
-          <div class="pics">
-            <span (click)="OpenImagePopup()" class="main-img"><img [src]="main"></span>
-            <div (click)="setimage(image)" *ngFor="let image of images" class="additional-img">              
-              <img [src]="image">  
-             
-            </div>
-            <div class="descr_heading">
-              <h6>Description: </h6>
-           </div> 
-            <div class="descr">
-              <p>{{product.description}}</p>
-           </div> 
-          </div>
-          <!-- PRODUCT INFORMATION -->
-          <div class="product">
-            <!--category-breadcrumb-->
-            <span class="category">{{product.catergory}}</span>
-            <!--stock-label-->
-            <span *ngIf="instock == 1" class="stock">In Stock</span>            
-            <span *ngIf="instock== 0" class="stockout">Sold Out</span>
-            <h1>{{product.product_name}}</h1>
-            <span *ngIf=" product.discount != 0" class="badgeicn"><mat-icon class="icon ">local_offer</mat-icon>{{product.discount}}&#37;</span> 
-            <!--PRICE-RATING-REVIEW-->
-            <div class="block-price-rating clearfix">
-              <!--price-->
-              <div class="block-price clearfix">
-                <div class="price-new clearfix">
-                  <span class="price-new-dollar">${{discountedprice}}</span>
-                </div>
-                <div *ngIf=" product.discount != 0" class="price-old clearfix">
-                  <span class="price-old-dollar">${{actualprice}}</span>
+          <!-- column half for large and full for small device -->
+          <div class="col-md-7 col-sm-12">
+            <div class="pics">
+              <span (click)="OpenImagePopup()" class="main-img"><img [src]="main"></span>               
+              <div (click)="setimage(image)" *ngFor="let image of images" class="additional-img">              
+                <img [src]="image">  
                 
-                </div>  
               </div>
-              
+              <div class="descr_heading">
+                <h6>Description: </h6>
+             </div> 
+              <div class="descr">
+                <p>{{product.description}}</p>
+             </div> 
             </div>
-           
-         
-            <!--SELECT BLOCK--> 
-           <div class="block-select clearfix">
-            <div class="select-quantity">
-              <span>Quantity</span>
-              <select [disabled] = "instock != 1" (change) = "selected_quantity($event)" class="quantity">
-                <option  *ngFor="let item of quantity_av" >{{item}}</option>               
-              </select>
-            </div>
-              <div *ngIf="productdetails != null && productdetails.length > 0" class="select-color">
-                <span>Select Color</span>
-                <select (change) = "selected_color($event)" class="color">
-                  <option  *ngFor="let item of distinctprod()" >{{item}}</option>               
-                </select>
-              </div>
-              <div *ngIf="productdetails != null && productdetails.length > 0"  class="select-size">
-                <span >Varient</span>
-                <select (change)="selected_varient($event)" class="size">
-                  <option  *ngFor="let item of distinctvariebt()">{{item}}</option>  
-                  
-                </select>
-              </div> 
-                
-            </div>
-            <!--LINKS-->
-      
           </div>
-          <div class="row">
-              <div class="col">
-                  <div   class="col-md-6 text-center btn_div ">
-                      <button [disabled] = "instock != 1" (click)="addtocart(product)" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Add to cart</button>
-                    </div>
-              </div>
+          
+          <!-- column half for large and full for small device -->
+          <div class="col-md-5 col-sm-12">
+            <!-- PRODUCT INFORMATION -->
+            <div class="product">
+              <!--category-breadcrumb-->
+              <span class="category">{{product.catergory}}</span>
+              <!--stock-label-->
+              <span *ngIf="instock == 1" class="stock">In Stock</span>            
+              <span *ngIf="instock== 0" class="stockout">Sold Out</span>
+              <h1>
+                {{product.product_name}} 
+                <span *ngIf=" product.discount != 0" class="badge badge-secondary">-{{product.discount}}&#37;</span>
+              </h1>
               
-              <div class="col">
-                  <div *ngIf="instock == 1"  class="col-md-6 text-center btn_div ">
-                      <button *ngIf="cart.length > 0" (click)="opencart()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">View cart</button>
+              <!--PRICE-RATING-REVIEW-->
+              <div class="block-price-rating clearfix">
+                <!--price-->
+                <div class="block-price clearfix">
+                  <div class="price-new clearfix">
+                    <span class="price-new-dollar">${{discountedprice}}</span>
                   </div>
+                  <div *ngIf=" product.discount != 0" class="price-old clearfix">
+                    <span class="price-old-dollar">${{actualprice}}</span>
+                  
+                  </div>  
+                </div>
+                
               </div>
+            
+          
+              <!--SELECT BLOCK--> 
+            <div class="block-select clearfix">
+              <div class="select-quantity">
+                <span>Quantity</span>
+                <select [disabled] = "instock != 1" (change) = "selected_quantity($event)" class="quantity">
+                  <option  *ngFor="let item of quantity_av" >{{item}}</option>               
+                </select>
+              </div>
+                <div *ngIf="productdetails != null && productdetails.length > 0" class="select-color">
+                  <span>Select Color</span>
+                  <select (change) = "selected_color($event)" class="color">
+                    <option  *ngFor="let item of distinctprod()" >{{item}}</option>               
+                  </select>
+                </div>
+                <div *ngIf="productdetails != null && productdetails.length > 0"  class="select-size">
+                  <span >Varient</span>
+                  <select (change)="selected_varient($event)" class="size">
+                    <option  *ngFor="let item of distinctvariebt()">{{item}}</option>  
+                    
+                  </select>
+                </div> 
+                  
+              </div>
+              <!--LINKS-->
+        
             </div>
+            <div class="row">
+                <div class="col-md-6 text-center btn_div ">
+                  <button [disabled] = "instock != 1" (click)="addtocart(product)" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Add to cart</button>
+                </div>
+                <div *ngIf="instock == 1" class="col-md-6 text-center btn_div ">
+                    <button *ngIf="cart.length > 0" (click)="opencart()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">View cart</button>
+                </div>
+              </div>
+          </div>
         </div>
         
       </div>

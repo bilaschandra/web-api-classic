@@ -31,8 +31,8 @@ export class SidemenuComponent implements OnInit {
   public opendd: number = -1;
   selcategory_id: string;
   public vendor_name: string;
-  upperlimit: any;
-  lowerlimit: any;
+  upperlimit: number = 60000;
+  lowerlimit: number = 0;
  
   
   
@@ -114,11 +114,11 @@ export class SidemenuComponent implements OnInit {
     this.vendor_name = vendor
   }
 
-  receivemax(manvalue){ this.upperlimit = manvalue
+  receivemax(manvalue){
+    this.upperlimit = manvalue;
   }
-
   
   receivemin(minvalue){
-    this.lowerlimit = minvalue
-     }
+    this.lowerlimit = minvalue;
+  }
 }

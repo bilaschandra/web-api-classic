@@ -31,16 +31,16 @@
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
                         <input [(ngModel)]="user.FirstName" type="text" class="form-control" id="firstName"
-                            placeholder="" value="" required="">
-                        <div class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': validation.FirstName }" required>
+                        <div class="invalid-feedback" *ngIf="validation.FirstName">
                             Valid first name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input [(ngModel)]="user.LastName" type="text" class="form-control" id="lastName" placeholder=""
-                            value="" required="">
-                        <div class="invalid-feedback">
+                        <input [(ngModel)]="user.LastName" type="text" class="form-control" id="lastName"
+                            [ngClass]="{ 'is-invalid': validation.LastName }" required>
+                        <div class="invalid-feedback" *ngIf="validation.LastName">
                             Valid last name is required.
                         </div>
                     </div>
@@ -51,10 +51,7 @@
                     <div class="input-group">
 
                         <input [(ngModel)]="user.UserName" type="text" class="form-control" id="username"
-                            placeholder="Username" required="">
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
+                            placeholder="Username">
                     </div>
                 </div>
 
@@ -68,10 +65,11 @@
                 </div> -->
 
                 <div class="mb-3">
-                    <label for="contact">Mobile Number </label>
+                    <label for="contact">Mobile Number</label>
                     <input [(ngModel)]="userdetail.contact_number" type="text" class="form-control" id="contact"
-                        placeholder="+xx xxx xxxxxxx">
-                    <div class="invalid-feedback">
+                        placeholder="+xx xxx xxxxxxx"
+                        [ngClass]="{ 'is-invalid': validation.contact_number }" required>
+                    <div class="invalid-feedback" *ngIf="validation.contact_number">
                         Please enter a valid contact number for shipping updates.
                     </div>
                 </div>
@@ -98,8 +96,9 @@
                 <div class="mb-3">
                     <label for="address">Address</label>
                     <input [(ngModel)]="userdetail.billing_street_address" type="text" class="form-control" id="address"
-                        placeholder="1234 Main St" required="">
-                    <div class="invalid-feedback">
+                        placeholder="1234 Main St"
+                        [ngClass]="{ 'is-invalid': validation.billing_street_address }" required>
+                    <div class="invalid-feedback" *ngIf="validation.billing_street_address">
                         Please enter your billing address.
                     </div>
                 </div>
@@ -107,31 +106,37 @@
                 <div class="mb-3">
                     <label for="address2">Billing City</label>
                     <input [(ngModel)]="userdetail.billing_city_address" type="text" class="form-control" id="address2"
-                        placeholder="Apartment or suite">
+                        placeholder="City"
+                        [ngClass]="{ 'is-invalid': validation.billing_city_address }" required>
+                    <div class="invalid-feedback" *ngIf="validation.billing_city_address">
+                        Please enter your billing city.
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <label for="country">Country</label>
                         <input [(ngModel)]="userdetail.billing_country_address" type="text" class="form-control"
-                            id="country" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback">
+                            id="country" placeholder="Country"
+                            [ngClass]="{ 'is-invalid': validation.billing_country_address }" required>
+                            <div class="invalid-feedback" *ngIf="validation.billing_country_address">
                             Please select a valid country.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="state">State</label>
                         <input [(ngModel)]="userdetail.billing_state_address" type="text" class="form-control"
-                            id="state" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback">
+                            id="state" placeholder="State"
+                            [ngClass]="{ 'is-invalid': validation.billing_state_address }" required>
+                        <div class="invalid-feedback" *ngIf="validation.billing_state_address">
                             Please provide a valid state.
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
                         <input [(ngModel)]="userdetail.billing_zip" type="text" class="form-control" id="zip"
-                            placeholder="" required="">
-                        <div class="invalid-feedback">
+                            [ngClass]="{ 'is-invalid': validation.billing_zip }" required>
+                        <div class="invalid-feedback" *ngIf="validation.billing_zip">
                             Zip code required.
                         </div>
                     </div>
@@ -141,8 +146,9 @@
                     <div class="mb-3">
                         <label for="address">Address</label>
                         <input [(ngModel)]="userdetail.shipping_street_address" type="text" class="form-control"
-                            id="address" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback">
+                            id="address" placeholder="1234 Main St"
+                            [ngClass]="{ 'is-invalid': validation.shipping_street_address }" required>
+                        <div class="invalid-feedback" *ngIf="validation.shipping_street_address">
                             Please enter your shipping address.
                         </div>
                     </div>
@@ -150,31 +156,37 @@
                     <div class="mb-3">
                         <label for="address2">Shipping City</label>
                         <input [(ngModel)]="userdetail.shipping_city_address" type="text" class="form-control"
-                            id="address2" placeholder="Apartment or suite">
+                            id="address2" placeholder="City"
+                            [ngClass]="{ 'is-invalid': validation.shipping_city_address }" required>
+                        <div class="invalid-feedback" *ngIf="validation.shipping_city_address">
+                            Please enter your shipping city.
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label for="country">Country</label>
                             <input [(ngModel)]="userdetail.shipping_country_address" type="text" class="form-control"
-                                id="country" placeholder="1234 Main St" required="">
-                            <div class="invalid-feedback">
+                                id="country" placeholder="Country"
+                                [ngClass]="{ 'is-invalid': validation.shipping_country_address }" required>
+                            <div class="invalid-feedback" *ngIf="validation.shipping_country_address">
                                 Please select a valid country.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="state">State</label>
                             <input [(ngModel)]="userdetail.shipping_state_address" type="text" class="form-control"
-                                id="state" placeholder="1234 Main St" required="">
-                            <div class="invalid-feedback">
+                                id="state" placeholder="State"
+                                [ngClass]="{ 'is-invalid': validation.shipping_state_address }" required>
+                            <div class="invalid-feedback" *ngIf="validation.shipping_state_address">
                                 Please provide a valid state.
                             </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="zip">Zip</label>
                             <input [(ngModel)]="userdetail.shipping_zip" type="text" class="form-control" id="zip"
-                                placeholder="" required="">
-                            <div class="invalid-feedback">
+                                [ngClass]="{ 'is-invalid': validation.shipping_zip }" required>
+                            <div class="invalid-feedback" *ngIf="validation.shipping_zip">
                                 Zip code required.
                             </div>
                         </div>
@@ -195,6 +207,8 @@
                     Try it out using the test card number <b>4242 4242 4242 4242</b>, a random three-digit CVC number, any expiration date in the future, and a random five-digit U.S. ZIP code.
                 </p>
             </div>
+
+            
         </div>
     </div>
 

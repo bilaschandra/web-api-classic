@@ -25,9 +25,9 @@ options: Options
     
     switch (label) {
       case 'min':
-        this.minrange.emit(value == undefined ?0 :value);
+        this.minrange.emit(Number(value) <= 0 ? 0 : value);
       case 'max':          
-      this.maxrange.emit(value == undefined ?0 :value);
+      this.maxrange.emit(Number(value) <= 0 ? 60000 : value);
       default:
        
       
@@ -48,12 +48,12 @@ options: Options
           case LabelType.Low:
             
             this.valueChange(value,"min")
-            return '<b>Min price:</b> $. ' + value;
+            return '<b>Min:</b> $' + value;
           case LabelType.High:          
               this.valueChange(value,"max")
-            return '<b>Max price:</b> $. ' + value;
+            return '<b>Max:</b> $' + value;
           default:
-            return '$. ' + value;
+            return '$' + value;
           
         }
       }

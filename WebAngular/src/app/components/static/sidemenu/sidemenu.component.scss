@@ -7,14 +7,15 @@ body {
   overflow-x: hidden;
 }
 #wrapper {
-  width: 105% !important;
+  // width: 105% !important;
   margin: 4.15vw 0vw 0vw 0vw !important;
-  padding: 0vw 0vw 0vw 0.7vw;
+  // padding: 0vw 0vw 0vw 0.7vw;
 }
 
 #sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -15rem;
+  // min-height: 100vh;
+  // margin-left: -15rem;
+  padding-bottom: 2rem;
   -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
@@ -63,7 +64,7 @@ body {
 
 .accordion {
   width: 100%;
-  max-width: 360px;
+  // max-width: 360px;
   margin: auto;
   background: #fff;
   border-radius: 4px;

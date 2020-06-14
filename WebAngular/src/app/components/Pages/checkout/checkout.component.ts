@@ -28,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   subtotal: number;
   saveinfo: boolean = false;
   transaction: Transaction = new Transaction();
+  validation: Object = {};
 
   constructor(private router: Router, private orderservice: OrderService, private stripeservice: StripeService, private datePipe: DatePipe, private sessionservice: SessionService) {
     var navigation = this.router.getCurrentNavigation();
@@ -118,21 +119,34 @@ export class CheckoutComponent implements OnInit {
 
   pay() {
     this.shippingaddress();
-    if (this.userdetail.contact_number == null || this.userdetail.contact_number == "") { alert('  ​​​​contact number'); return; }
-    if (this.userdetail.billing_street_address == null || this.userdetail.billing_street_address == "") { alert('  ​​​​billing street address'); return; }
-    if (this.userdetail.billing_city_address == null || this.userdetail.billing_city_address == "") { alert('  ​​​​billing city address'); return; }
-    if (this.userdetail.billing_state_address == null || this.userdetail.billing_state_address == "") { alert('  ​​​​billing state address '); return; }
-    if (this.userdetail.billing_country_address == null || this.userdetail.billing_country_address == "") { alert('  ​​​​billing countr address '); return; }
-    if (this.userdetail.billing_zip == null || this.userdetail.billing_zip == "") { alert('  ​​​​billing zip     '); return; }
-    if (this.userdetail.shipping_street_address == null || this.userdetail.shipping_street_address == "") { alert('  ​​​​shipping street address     '); return; }
-    if (this.userdetail.shipping_city_address == null || this.userdetail.shipping_city_address == "") { alert('  ​​​​shipping city address     '); return; }
-    if (this.userdetail.shipping_state_address == null || this.userdetail.shipping_state_address == "") { alert('  ​​​​shipping state address'); return; }
-    if (this.userdetail.shipping_country_address == null || this.userdetail.shipping_country_address == "") { alert('  ​​​​shipping country address'); return; }
-    if (this.userdetail.shipping_zip == null || this.userdetail.shipping_zip == "") { alert('  ​​​​shipping zip'); return; }
-    if (this.user.FirstName == null || this.user.FirstName == "") { alert('  ​​​​FirstName    '); return; }
-    if (this.user.LastName == null || this.user.LastName == "") { alert('  ​​​​LastName'); return; }
-    // if (this.user.Email == null || this.user.Email == "") { alert('  ​​​​Email   '); return; }
-    // if (this.user.UserName == null || this.user.UserName == "") {      alert('  ​​​​UserName'); return;    }
+    this.validation = {};
+    [
+      'FirstName',
+      'LastName',
+      'contact_number',
+      'billing_street_address',
+      'billing_city_address',
+      'billing_country_address',
+      'billing_zip',
+      'shipping_street_address',
+      'shipping_city_address',
+      'shipping_state_address',
+      'shipping_country_address',
+      'shipping_zip',
+    ].map(field => {
+      if (['FirstName', 'LastName'].includes(field)) {
+        if (!this.user[field]) {
+          this.validation[field] = true;
+        }
+      } else if (!this.userdetail[field]) {
+        this.validation[field] = true;
+      }
+    });
+
+    if (Object.entries(this.validation).length > 0) {
+      // should apply validation
+      return;
+    }
 
     var handler = (<any>window).StripeCheckout.configure({
       key: Configuration.stripe,

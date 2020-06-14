@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   @Output() searchevent = new EventEmitter<string>();
+  
+  @Input()
   searchstring :string = ""
+  
   Landingpage: boolean = false;
   constructor(private router :Router) {
     if (this.router.url == "/landingpage" || this.router.url == '/') {
