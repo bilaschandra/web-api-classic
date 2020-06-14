@@ -76,7 +76,9 @@ export class AdminsidebarComponent implements OnInit {
           this.user.UserName = element['UserName'];
           this.user.ProflieImage_url = element['ProflieImage_url'];
           this.user.UserID = this.sessionservice.getUserId();
-          this.profileimg = Configuration.RestApiURL + this.user.ProflieImage_url
+          this.profileimg = this.user.ProflieImage_url ?
+            Configuration.RestApiURL + this.user.ProflieImage_url
+            : this.profileimg;
            
         });
       }

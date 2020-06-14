@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from 'src/app/classes/transaction';
-import { LoginService } from 'src/app/services/crudcalls/login/login.service';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admintransaction',
@@ -18,7 +18,8 @@ export class AdmintransactionComponent implements OnInit {
   filterValue: string;
 
   constructor(
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private datePipe: DatePipe
   ) {
     this.getTransaction();
   }
@@ -55,11 +56,18 @@ export class AdmintransactionComponent implements OnInit {
             element['currency'],
             element['error_messaage'],
             element['success_message'],
-            element['transaction_date'],
+            this.dateFormate(element['transaction_date']),
           )
         );
       });
     });
+  }
+
+  dateFormate(date) {
+    if (!date || date == '0000-00-00') {
+      return '';
+    }
+    return this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 
   saveTransaction(item: Transaction) {
