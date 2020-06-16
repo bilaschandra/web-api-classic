@@ -56,7 +56,9 @@ export class UserprofileComponent implements OnInit {
           this.user.ProflieImage_url = element['ProflieImage_url'];
           this.user.UserID = this.session.getUserId();
           this.prfileimage = Configuration.RestApiURL + this.user.ProflieImage_url;
-           
+          this.prfileimage = this.user.ProflieImage_url ?
+            Configuration.RestApiURL + this.user.ProflieImage_url
+            : 'http://trovacamporella.com/img/trovacamporella-fiat500.png';
           
         });
       }
@@ -119,9 +121,9 @@ export class UserprofileComponent implements OnInit {
    
 
     this.userservice.updateuser(this.user).subscribe();
+    this.userdetails.UserID = this.user.UserID;
     this.userservice.updateuserdetails(this.userdetails).subscribe();
-    this.session.clear();
-    alert("Informated have been update, please relogin")
+    alert("Informated have been update");
     this.router.navigate(['./']);
     
 

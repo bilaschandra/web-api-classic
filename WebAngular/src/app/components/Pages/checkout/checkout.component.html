@@ -31,7 +31,8 @@
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
                         <input [(ngModel)]="user.FirstName" type="text" class="form-control" id="firstName"
-                            [ngClass]="{ 'is-invalid': validation.FirstName }" required>
+                        (ngModelChange)="validate()"    
+                        [ngClass]="{ 'is-invalid': validation.FirstName }" required>
                         <div class="invalid-feedback" *ngIf="validation.FirstName">
                             Valid first name is required.
                         </div>
@@ -39,7 +40,8 @@
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
                         <input [(ngModel)]="user.LastName" type="text" class="form-control" id="lastName"
-                            [ngClass]="{ 'is-invalid': validation.LastName }" required>
+                        (ngModelChange)="validate()"
+                        [ngClass]="{ 'is-invalid': validation.LastName }" required>
                         <div class="invalid-feedback" *ngIf="validation.LastName">
                             Valid last name is required.
                         </div>
@@ -68,6 +70,7 @@
                     <label for="contact">Mobile Number</label>
                     <input [(ngModel)]="userdetail.contact_number" type="text" class="form-control" id="contact"
                         placeholder="+xx xxx xxxxxxx"
+                        (ngModelChange)="validate()"
                         [ngClass]="{ 'is-invalid': validation.contact_number }" required>
                     <div class="invalid-feedback" *ngIf="validation.contact_number">
                         Please enter a valid contact number for shipping updates.
@@ -97,6 +100,7 @@
                     <label for="address">Address</label>
                     <input [(ngModel)]="userdetail.billing_street_address" type="text" class="form-control" id="address"
                         placeholder="1234 Main St"
+                        (ngModelChange)="validate()"
                         [ngClass]="{ 'is-invalid': validation.billing_street_address }" required>
                     <div class="invalid-feedback" *ngIf="validation.billing_street_address">
                         Please enter your billing address.
@@ -107,6 +111,7 @@
                     <label for="address2">Billing City</label>
                     <input [(ngModel)]="userdetail.billing_city_address" type="text" class="form-control" id="address2"
                         placeholder="City"
+                        (ngModelChange)="validate()"
                         [ngClass]="{ 'is-invalid': validation.billing_city_address }" required>
                     <div class="invalid-feedback" *ngIf="validation.billing_city_address">
                         Please enter your billing city.
@@ -118,6 +123,7 @@
                         <label for="country">Country</label>
                         <input [(ngModel)]="userdetail.billing_country_address" type="text" class="form-control"
                             id="country" placeholder="Country"
+                            (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.billing_country_address }" required>
                             <div class="invalid-feedback" *ngIf="validation.billing_country_address">
                             Please select a valid country.
@@ -127,6 +133,7 @@
                         <label for="state">State</label>
                         <input [(ngModel)]="userdetail.billing_state_address" type="text" class="form-control"
                             id="state" placeholder="State"
+                            (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.billing_state_address }" required>
                         <div class="invalid-feedback" *ngIf="validation.billing_state_address">
                             Please provide a valid state.
@@ -135,6 +142,7 @@
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip</label>
                         <input [(ngModel)]="userdetail.billing_zip" type="text" class="form-control" id="zip"
+                            (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.billing_zip }" required>
                         <div class="invalid-feedback" *ngIf="validation.billing_zip">
                             Zip code required.
@@ -147,6 +155,7 @@
                         <label for="address">Address</label>
                         <input [(ngModel)]="userdetail.shipping_street_address" type="text" class="form-control"
                             id="address" placeholder="1234 Main St"
+                            (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.shipping_street_address }" required>
                         <div class="invalid-feedback" *ngIf="validation.shipping_street_address">
                             Please enter your shipping address.
@@ -157,6 +166,7 @@
                         <label for="address2">Shipping City</label>
                         <input [(ngModel)]="userdetail.shipping_city_address" type="text" class="form-control"
                             id="address2" placeholder="City"
+                            (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.shipping_city_address }" required>
                         <div class="invalid-feedback" *ngIf="validation.shipping_city_address">
                             Please enter your shipping city.
@@ -168,6 +178,7 @@
                             <label for="country">Country</label>
                             <input [(ngModel)]="userdetail.shipping_country_address" type="text" class="form-control"
                                 id="country" placeholder="Country"
+                                (ngModelChange)="validate()"
                                 [ngClass]="{ 'is-invalid': validation.shipping_country_address }" required>
                             <div class="invalid-feedback" *ngIf="validation.shipping_country_address">
                                 Please select a valid country.
@@ -177,6 +188,7 @@
                             <label for="state">State</label>
                             <input [(ngModel)]="userdetail.shipping_state_address" type="text" class="form-control"
                                 id="state" placeholder="State"
+                                (ngModelChange)="validate()"
                                 [ngClass]="{ 'is-invalid': validation.shipping_state_address }" required>
                             <div class="invalid-feedback" *ngIf="validation.shipping_state_address">
                                 Please provide a valid state.
@@ -185,6 +197,7 @@
                         <div class="col-md-3 mb-3">
                             <label for="zip">Zip</label>
                             <input [(ngModel)]="userdetail.shipping_zip" type="text" class="form-control" id="zip"
+                                (ngModelChange)="validate()"
                                 [ngClass]="{ 'is-invalid': validation.shipping_zip }" required>
                             <div class="invalid-feedback" *ngIf="validation.shipping_zip">
                                 Zip code required.

@@ -11,6 +11,7 @@ import { async } from 'q';
 import { Transaction } from 'src/app/classes/transaction';
 import { DatePipe } from '@angular/common';
 import { SessionService } from 'src/app/services/session/session.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -23,14 +24,20 @@ export class CheckoutComponent implements OnInit {
   total: number = 0;
   shipping: number = 0;
   isshippingdifferernt: boolean = false;
-  userdetail = new Userdetails;
-  user = new User;
   subtotal: number;
   saveinfo: boolean = false;
   transaction: Transaction = new Transaction();
   validation: Object = {};
+  user: User = new User();
+  userdetail: Userdetails = new Userdetails();
 
-  constructor(private router: Router, private orderservice: OrderService, private stripeservice: StripeService, private datePipe: DatePipe, private sessionservice: SessionService) {
+  constructor(
+    private userservice: UserService,
+    private router: Router,
+    private orderservice: OrderService,
+    private stripeservice: StripeService,
+    private datePipe: DatePipe,
+    private sessionservice: SessionService) {
     var navigation = this.router.getCurrentNavigation();
     if (navigation != null && navigation.extras != null && navigation.extras.state != null) {
       var state = navigation.extras.state;
@@ -44,6 +51,8 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/']);
     }
     this.loadStripe();
+    this.getuser();
+    this.getuserdetails();
   }
 
   ngOnInit() { }
@@ -117,8 +126,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  pay() {
-    this.shippingaddress();
+  validate() {
     this.validation = {};
     [
       'FirstName',
@@ -143,8 +151,12 @@ export class CheckoutComponent implements OnInit {
       }
     });
 
-    if (Object.entries(this.validation).length > 0) {
-      // should apply validation
+    return Object.entries(this.validation).length === 0;
+  }
+
+  pay() {
+    this.shippingaddress();
+    if (!this.validate()) {
       return;
     }
 
@@ -239,6 +251,42 @@ export class CheckoutComponent implements OnInit {
     return unixtimestamp == null ? "" : this.datePipe.transform(month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2), 'yyyy-MM-dd'); //whatever format you need. 
 
 
+
+  }
+
+  getuser() {
+    this.userservice.readuser().subscribe(data => {
+      if (data['records'] != null) {
+        data['records'].forEach(element => {
+          this.user.FirstName = element['FirstName'];
+          this.user.LastName = element['LastName'];
+          this.user.Email = element['Email'];
+          this.user.UserName = element['UserName'];          
+        });
+      }
+    });
+  }
+
+  getuserdetails() {
+    this.userservice.readuserdetails().subscribe(data => {
+      if (data['records'] != null) {
+        data['records'].forEach(element => {
+          this.userdetail.id = element['id'];
+          this.userdetail.UserID = element['UserID'];
+          this.userdetail.contact_number = element['contact_number'];
+          this.userdetail.billing_street_address = element['billing_street_address'];
+          this.userdetail.billing_city_address = element['billing_city_address'];
+          this.userdetail.billing_state_address = element['billing_state_address'];
+          this.userdetail.billing_country_address = element['billing_country_address'];
+          this.userdetail.billing_zip = element['billing_zip'];
+          this.userdetail.shipping_street_address = element['shipping_street_address'];
+          this.userdetail.shipping_city_address = element['shipping_city_address'];
+          this.userdetail.shipping_state_address = element['shipping_state_address'];
+          this.userdetail.shipping_country_address = element['shipping_country_address'];
+          this.userdetail.shipping_zip = element['shipping_zip'];
+        });
+      }
+    })
 
   }
 
