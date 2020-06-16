@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from 'src/app/classes/cart';
 import { ProductService } from 'src/app/services/crudcalls/products/product.service';
@@ -10,10 +10,10 @@ import { ProductService } from 'src/app/services/crudcalls/products/product.serv
 })
 export class LandingpageComponent implements OnInit {
   Landingpage: boolean;
- cart  = new Array<Cart>();
-  public abc ="test";
+  cart = new Array<Cart>();
   searchquery: any;
-  maxprice: any;
+  maxprice: any;oooidokd
+  opendd: number;
   constructor(private router: Router, private productservice : ProductService) {
 
 
@@ -47,8 +47,10 @@ export class LandingpageComponent implements OnInit {
   }
 
   receiveMessage(event) {
-   
-    this.searchquery =event;
+    this.searchquery = event;
+    if (!event) {
+      this.opendd = this.opendd === null ? -1 : null;
+    }
   }
 
 }

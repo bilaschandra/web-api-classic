@@ -6,7 +6,7 @@
         <div class="sidebar-heading" (click)="selectedcategory(null)">Categories</div>
         <ul id="accordion" class="accordion">
           <li *ngFor="let item of category; let i = index" [ngClass]="{'active':opendd==i}">
-            <div class="menu" (click)="selectedcategory(item);toggle(i)">
+            <div class="menu" (click)="toggle(i, item)">
               <i></i>{{ item.category }}<i class="material-icons expand_more">expand_more</i>
             </div>
             <ul class="submenu" #submenu [style.height.px]="opendd==i ? submenu.scrollHeight : 0">

@@ -18,6 +18,7 @@ export class TopmenuComponent implements OnInit {
 
   @Input() cart: Cart[] = new Array<Cart>();  
   @Output() searcheventtop = new EventEmitter<string>();
+  @Output() selectedCategoryFromTopEvent = new EventEmitter<string>();
   searchquery :string;
   show: boolean =true;
    
@@ -57,15 +58,17 @@ export class TopmenuComponent implements OnInit {
   Home(){
     var navExtras: NavigationExtras = {};
     navExtras.state = {
-      "cart" : this.cart,
+      'cart': this.cart,
+      "search" :this.searchquery,
     }
     this.receiveMessage('');
+    this.selectedCategoryFromTopEvent.emit(null);
     this.router.navigate(['/'], navExtras);
   }
 
   receiveMessage(event) {
     this.searchquery = event;
-    this.searcheventtop.emit(this.searchquery);
+    this.searcheventtop.emit(event);    
   }
 
   viewcart(){

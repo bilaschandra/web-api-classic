@@ -1,4 +1,12 @@
-<app-topmenu [cart] = "cart" (searcheventtop)="receiveMessage($event)"></app-topmenu>
-<app-sidemenu [cart] = "cart" [(searchquery)]=searchquery [(maxprice)] = maxprice></app-sidemenu> 
+<app-topmenu
+    [cart] = "cart"
+    (selectedCategoryFromTopEvent)="sidemenu.selectedcategory(null)"
+    (searcheventtop)="receiveMessage($event)"></app-topmenu>
+<app-sidemenu
+    #sidemenu
+    [cart] = "cart"
+    [(searchquery)]=searchquery
+    [(opendd)]=opendd
+    [(maxprice)] = maxprice></app-sidemenu> 
 <app-footer></app-footer>
  

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/crudcalls/category/category.service';
@@ -27,10 +27,10 @@ export class SidemenuComponent implements OnInit {
   category = new Array<Category>();
   config: Config;
   options: Config = { multi: false };
-  selcategory: String = "";
-  public opendd: number = -1;
+  selcategory: string = "";
+  @Input() opendd: number;
   selcategory_id: string;
-  public vendor_name: string;
+  vendor_name: string;
   upperlimit: number = 60000;
   lowerlimit: number = 0;
  
@@ -73,14 +73,15 @@ export class SidemenuComponent implements OnInit {
 
  
 
-  toggle(id: number): void {
-
+  toggle(id: number, item: Category): void {
     if (this.opendd == id) {
       this.opendd = -1;
-       
+      this.selectedcategory(null); 
     }
     else {
-      this.opendd = id;}
+      this.opendd = id;
+      this.selectedcategory(item);
+    }
   }
 
 
@@ -98,16 +99,15 @@ export class SidemenuComponent implements OnInit {
   }
 
   selectedcategory(choice: Category) {
-    if(choice == undefined || choice == null){
-      
-    this.selcategory_id = "-1";
-    this.selcategory  = "-1";
-    this.vendor_name = "-1";
-    
+    if(!choice){
+      this.selcategory_id = "-1";
+      this.selcategory  = "-1";
+      this.vendor_name = "-1";
+    } else {
+      this.selcategory_id = choice.id;
+      this.selcategory  = choice.category;
+      this.vendor_name = "";
     }
-    this.selcategory_id = choice.id;
-    this.selcategory  = choice.category;
-    this.vendor_name = "";
   }
 
   getvendorproducts(vendor){
