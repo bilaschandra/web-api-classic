@@ -14,7 +14,11 @@ export class AdminorderComponent implements OnInit {
   opendd: number =-1;
   selected :string ;
   filterValue : string;
-  constructor(private orderservice :OrderService, private datePipe: DatePipe) {
+
+  constructor(
+    private orderservice :OrderService,
+    private datePipe: DatePipe
+    ) {
 
     this.orderservice.read().subscribe(data=>{
       if (data['records'] != null){
@@ -43,29 +47,23 @@ export class AdminorderComponent implements OnInit {
   isedit : boolean =true;  
   isdelete : boolean =false;
 
-  selectedtab(value:string)
-  {
+  selectedtab(value: string) {
     switch (value) {
-     
-        case 'Edit':
-          
+      case 'Edit':
         this.isedit = true;
         this.isdelete = false;
-        
-          break;
-          case 'Delete':
-            
+        break;
+      case 'Delete':
         this.isedit = false;
         this.isdelete = true;
-        
-            break;
-      default:        
-      this.isedit = true;
-      this.isdelete = false;
+        break;
+      default:
+        this.isedit = true;
+        this.isdelete = false;
         break;
     }
-
   }
+
   deleteorder(id){
     let index =this.orders.findIndex(d => d.id == id);
     if (index > -1) {this.orders.splice(index, 1);}
@@ -113,9 +111,6 @@ export class AdminorderComponent implements OnInit {
     }
     return date == null ? "" : this.datePipe.transform(date, 'MM/dd/yyyy'); //whatever format you need. 
   }
-   
-  
-
 }
 
 

@@ -142,6 +142,17 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationPassword">Password</label>
+                                            <div class="input-group">
+                                                <input [(ngModel)]="user.password" type="password"
+                                                    class="form-control" id="validationPassword"
+                                                    placeholder="Password" aria-describedby="inputGroupPrepend"
+                                                    required>
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustomEmail">Email</label>
                                             <div class="input-group">
@@ -155,7 +166,7 @@
                                                     Please choose a Email.
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                        
 
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustomMobileNumber">Mobile Number</label>

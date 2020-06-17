@@ -66,6 +66,7 @@ export class User {
         if (data["LastName"] != null) this.LastName = data["LastName"];
         if (data["ProflieImage_url"] != null) this.ProflieImage_url = data["ProflieImage_url"];
         if (data["isactive"] != null) this.ProflieImage_url = data["isactive"];
+        if (data["password"] != null) this.password = data["password"];
      
 
 

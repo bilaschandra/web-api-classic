@@ -61,8 +61,8 @@ export class UserService {
       "FirstName": user.FirstName,
       "LastName": user.LastName,
       "Email": user.Email,
-      "ImageURL" : user.ProflieImage_url
-
+      "ImageURL" : user.ProflieImage_url,
+      "password" :user.password
     }
     return this.http
     //services\user\updateuserdetail.php

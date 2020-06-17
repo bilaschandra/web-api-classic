@@ -32,8 +32,11 @@ if (
         $user->Email  = $data->Email ;
         $user->ImageURL   = $data->ImageURL  ;
 
-    
-    
+        if (!empty($data->password)) {
+            $password_hash = password_hash($data->password, PASSWORD_DEFAULT);
+            $user->Hash = $password_hash;
+        }
+
     // create the product
     if ($user->updateuser($data->UserID)) {
         

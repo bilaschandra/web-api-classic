@@ -93,10 +93,7 @@
 
                                         </td>
                                         <td style="word-break: break-all !important;">{{order.invoice}}</td>
-                                        <td>
-                                        <input [(ngModel)]="order.issue_date" [disabled]="opendd!=order.id"
-                                        class="edituser" type="text" required autocomplete="off">
-                                        </td>
+                                        <td>{{order.issue_date}}</td>
                                         <td>
                                             <ng-container *ngIf="order.delivered_date == null; else elseTemplate">
                                                     <input [(ngModel)]="order.delivered_date" [disabled]="opendd!=order.id" 
@@ -119,14 +116,8 @@
                                         </label>
                                         </div>        
                                         </td>
-                                        <td>
-                                        <input [(ngModel)]="order.order_quantity" [disabled]="opendd!=order.id"
-                                        class="edituser" type="text" required autocomplete="off">
-                                        </td>
-                                        <td>
-                                        <input [(ngModel)]="order.order_total_price" [disabled]="opendd!=order.id"
-                                        class="edituser" type="text" required autocomplete="off">
-                                        </td>
+                                        <td>{{order.order_quantity}}</td>
+                                        <td>{{order.order_total_price}}</td>
                                         <td>
                                         <input [(ngModel)]="order.contact_number" [disabled]="opendd!=order.id"
                                         class="edituser" type="text" required autocomplete="off">

@@ -10,7 +10,8 @@ class User{
     public  $Email;  
     public  $ImageURL;
     public  $isactive;
-    
+    public  $Hash;
+
     // object properties
     public $contact_number;
     public $billing_street_address;
@@ -63,7 +64,7 @@ class User{
 
     function updateuser($userid)
     {
-        $query =" UPDATE tbl_user u SET  u.UserName = :UserName,u.FirstName = :FirstName,u.LastName = :LastName,
+        $query =" UPDATE tbl_user u SET  u.UserName = :UserName, u.FirstName = :FirstName,u.LastName = :LastName,
                     u.Email = :Email, u.ProflieImage_url = :ProflieImage_url WHERE u.UserID  =:UserID ;";
 
         $stmt = $this->conn->prepare($query);
@@ -81,6 +82,8 @@ class User{
         $stmt->bindParam(":Email" , $this->Email);
         $stmt->bindParam(":ProflieImage_url" , $this->ImageURL);
         $stmt->execute();
+
+        $this->updatePassword($userid);
         return $stmt;
     }
 
@@ -171,6 +174,14 @@ class User{
       $stmt->execute();
       return $stmt;
     
+    }
+
+    private function updatePassword($userId) {
+        if (!empty($this->Hash) && $userId) {
+            $query = sprintf("UPDATE  `tbl_user` SET `Hash`= '%s' WHERE  `UserID`= $userId", $this->Hash);
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+        }
     }
 
     function createimages($user_id,$profileimage){
