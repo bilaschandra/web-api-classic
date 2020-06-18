@@ -14,29 +14,57 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputfirstname">First Name</label>
-                    <input [(ngModel)]="user.FirstName" type="text" name="firstname" class="form-control" id="firstname" aria-describedby="firstnameHelp"
-                        placeholder="Firstname">
+                    <label for="firstname">First Name</label>
+                    <input [(ngModel)]="user.FirstName" type="text" name="firstname" class="form-control" id="firstname"
+                        placeholder="Firstname"
+                        (ngModelChange)="validate()"
+                        [ngClass]="{ 'is-invalid': validation.FirstName }" required>
+                    <div class="invalid-feedback" *ngIf="validation.FirstName">
+                        First name is required.
+                    </div>    
                 </div>
+
                 <div class="form-group">
                     <label for="exampleInputlastname">Last Name</label>
                     <input  [(ngModel)]="user.LastName"  type="text" name="lastname" class="form-control" id="lastname" aria-describedby="lastnameHelp"
-                        placeholder="Lastname">
+                        placeholder="Lastname"
+                        (ngModelChange)="validate()"
+                        [ngClass]="{ 'is-invalid': validation.LastName }" required>
+                    <div class="invalid-feedback" *ngIf="validation.LastName">
+                        Last name is required.
+                    </div>    
                 </div>
                 <div class="form-group">
                     <label for="UserName">User Name</label>
                     <input  [(ngModel)]="user.UserName"  type="UserName" name="UserName" class="form-control" id="UserName" aria-describedby="UserNamelHelp"
-                        placeholder="User Name">
+                        placeholder="User Name"
+                        (ngModelChange)="validate()"
+                        [ngClass]="{ 'is-invalid': validation.UserName }" required>
+                    <div class="invalid-feedback" *ngIf="validation.UserName">
+                        User name is required.
+                    </div>   
                 </div>
                 <div class="form-group">
-                    <label    for="exampleInputEmail1">Email address</label>
-                    <input  [(ngModel)]="user.Email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input [(ngModel)]="user.Email" type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email"
+                    (ngModelChange)="validate()"
+                    [ngClass]="{ 'is-invalid': validation.Email }" required>
+                    <div class="invalid-feedback" *ngIf="validation.Email">
+                        Email is required.
+                    </div>  
                 </div>
+
                 <div class="form-group">
                     <label  for="exampleInputpassword">Password</label>
                     <input  [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control"
-                        aria-describedby="PasswordHelp" placeholder="Password">
+                        aria-describedby="PasswordHelp" placeholder="Password"
+                        (ngModelChange)="validate()"
+                        [ngClass]="{ 'is-invalid': validation.password }" required>
+                    <div class="invalid-feedback" *ngIf="validation.password">
+                        Password is required.
+                    </div> 
                 </div>
+
                 <div class="col-md-12 ">
                         <div  class="form-group">
                             <p class="text-center"><span style="color: red" class="login" id="signin">{{warning}}</span></p>

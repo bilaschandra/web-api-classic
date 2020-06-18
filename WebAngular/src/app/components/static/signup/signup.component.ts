@@ -11,7 +11,9 @@ import { LoginService } from 'src/app/services/crudcalls/login/login.service';
 export class SignupComponent implements OnInit {
 warning = ""
 public user : User = new User();
-  constructor(private modalService: ModalService, private login :LoginService) {
+validation: Object = {};
+
+constructor(private modalService: ModalService, private login :LoginService) {
     this.user.Email
    }
 
@@ -26,7 +28,28 @@ public user : User = new User();
 
   }
 
+  validate() {
+    this.validation = {};
+    [
+      'FirstName',
+      'LastName',
+      'UserName',
+      'Email',
+      'password',
+    ].map(field => {
+      if (!this.user[field]) {
+        this.validation[field] = true;
+      }
+    });
+
+    return Object.entries(this.validation).length === 0;
+  }
+
   submit(){
+    if (!this.validate()) {
+      return;
+    }
+
     this.login.register(this.user).subscribe(data=>{
       if(data['message'] != null){
         this.warning = data['message'];
