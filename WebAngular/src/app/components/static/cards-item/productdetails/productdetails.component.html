@@ -77,11 +77,11 @@
               <!--LINKS-->
         
             </div>
-            <div class="row">
-                <div class="col-md-6 text-center btn_div ">
+            <div class="row btn_div text-center">
+                <div class="col-md-6 col-sm-12" style="padding-bottom: 5px">
                   <button [disabled] = "instock != 1" (click)="addtocart(product)" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Add to cart</button>
                 </div>
-                <div *ngIf="instock == 1" class="col-md-6 text-center btn_div ">
+                <div *ngIf="instock == 1" class="col-md-6 col-sm-12" style="padding-bottom: 5px">
                     <button *ngIf="cart.length > 0" (click)="opencart()" type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">View cart</button>
                 </div>
               </div>
