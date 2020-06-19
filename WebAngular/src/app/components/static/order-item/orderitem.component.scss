@@ -1,0 +1,41 @@
+.media-object {
+  width: 16vw;
+  height: 9vw;
+}
+
+.close_div {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Open Sans,sans-serif;
+  color: #2a0b4c;
+}
+
+.close {
+  text-align: center;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Open Sans,sans-serif;
+  color: #2a0b4c;
+  width: 30px;
+  border-radius: 50px;
+  background-color: #fe4066;
+  padding: 5px;
+  box-shadow: 0 2px 8px #d0cccc;
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.myform {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+}
+ 

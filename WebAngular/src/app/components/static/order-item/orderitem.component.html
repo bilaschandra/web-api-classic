@@ -1,0 +1,46 @@
+<div class="container rounded" style="background-color: white;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="myform form">
+                <div (click)="closeModal()" class="close_div">
+                    <img src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close">
+                </div>
+                <div class="text-center">
+                    <h2>{{ order.product_name }}</h2>
+                    <h5>Category: {{ order.category }}</h5>
+                    <h5>Vendor: {{ order.vendor }}</h5>
+                    <img class="media-object" [src]=order.image_url>
+                </div>
+                <br />
+                <h6 style="word-break: break-all !important;">Invoice No: {{order.invoice_no}}</h6>
+                <div>
+                    <table class="table table-bordered table-responsive-sm table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Color</th>
+                                <th>Varient</th>
+                                <th>Order Date</th>
+                                <th>Deliver Date</th>
+                                <th>Status</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ order.color }}</td>
+                                <td>{{ order.varient }}</td>
+                                <td>{{ order.issue_date }}</td>
+                                <td>{{ order.delivered_date }}</td>
+                                <td>{{ order.status }}</td>
+                                <td>{{ order.quantity }}</td>
+                                <td>{{ order.price }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

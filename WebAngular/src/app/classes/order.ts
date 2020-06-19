@@ -127,7 +127,5 @@ export class Order {
         if (data["shipping_country_address"] != null) this.shipping_country_address = data["shipping_country_address"];
         if (data["shipping_zip"] != null) this.shipping_zip = data["shipping_zip"];
         if (data["invoice_id"] != null) this.invoice = data["invoice_id"];
-        
-       
     }
 }

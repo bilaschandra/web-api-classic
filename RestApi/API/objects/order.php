@@ -284,6 +284,36 @@ class Order
         return $stmt;
     }
 
+    function detailsByOrderId($orderId)
+    {
+        $query = "SELECT
+            t.invoice_no,
+            DATE_FORMAT(o.issue_date, '%d/%m/%Y') AS issue_date,
+            DATE_FORMAT(o.delivered_date, '%d/%m/%Y') AS delivered_date,
+            IF(o.status = 1, 'Delivered', 'Pending') as status,
+            o.order_quantity as quantity,
+            o.order_total_price as price,
+            p.product_name,
+            p.vendor,
+            p.image_url,
+            c.category,
+            pa.color_option as color,
+            pa.varient
+        FROM tbl_orders o 
+        LEFT JOIN tbl_transactions t ON t.id = o.invoice_id
+        LEFT JOIN tbl_product p ON p.id = o.product_id
+        LEFT JOIN tbl_product_attribute pa ON pa.id = p.id
+        LEFT JOIN tbl_category c ON c.id = p.category_id
+        WHERE o.id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $orderId, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
    
 
 }

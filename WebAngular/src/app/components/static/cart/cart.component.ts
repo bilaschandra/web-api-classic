@@ -22,8 +22,6 @@ export class CartComponent implements OnInit {
       var state = navigation.extras.state;
       if (state['cart'] != null) {
         this.cart = state['cart'];
-        console.log(this.cart)
-
       }
       
     else{

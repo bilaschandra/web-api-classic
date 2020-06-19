@@ -135,4 +135,14 @@ export class OrderService {
         // Error handling to be added here
       );
   }
+
+  orderItemDetails(orderId){
+    var jsonorder_obj = {
+      "id": orderId,
+    }
+
+    return this.http
+      .post(Configuration.RestApiURL + "services/order/details.php", jsonorder_obj, this.httpextensions.httpOptions)
+      .pipe();
+  }
 }

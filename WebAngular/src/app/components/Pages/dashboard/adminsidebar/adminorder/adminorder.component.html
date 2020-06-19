@@ -90,7 +90,7 @@
                                         <span class="edit" (click)="toggle(order.id)"
                                         [attr.id]="'edit_' + order.id" title="Edit" data-toggle="tooltip"><i
                                         class="material-icons">&#xE254;</i></span>
-
+                                        <a href="javascript:void(0)" (click)="openProductModal('productId', order.id)">View</a>    
                                         </td>
                                         <td style="word-break: break-all !important;">{{order.invoice}}</td>
                                         <td>{{order.issue_date}}</td>
@@ -263,3 +263,11 @@
             </div>
         </div>
     </div>
+
+    <jw-modal id="productId" (onCloseAction)="onCloseModalResetOrderId($event)">
+        <div *ngIf="orderId > 0">
+            <app-orderitem
+            [(orderId)]=orderId
+            id="productId"></app-orderitem>
+        </div>
+    </jw-modal>

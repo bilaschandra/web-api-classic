@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from 'src/app/services/crudcalls/order/order.service';
 import { Order } from 'src/app/classes/order';
 import { DatePipe } from '@angular/common';
+import { ModalService } from 'src/app/services/popup/modal.service';
 
 @Component({
   selector: 'app-adminorder',
@@ -14,10 +15,12 @@ export class AdminorderComponent implements OnInit {
   opendd: number =-1;
   selected :string ;
   filterValue : string;
+  orderId: number = 0;
 
   constructor(
     private orderservice :OrderService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private modalService:ModalService
     ) {
 
     this.orderservice.read().subscribe(data=>{
@@ -110,6 +113,15 @@ export class AdminorderComponent implements OnInit {
       return "";
     }
     return date == null ? "" : this.datePipe.transform(date, 'MM/dd/yyyy'); //whatever format you need. 
+  }
+
+  openProductModal(Id: string, orderId: number) {
+    this.orderId = orderId;
+    this.modalService.open(Id);
+  }
+
+  onCloseModalResetOrderId() {
+    this.orderId = 0;
   }
 }
 

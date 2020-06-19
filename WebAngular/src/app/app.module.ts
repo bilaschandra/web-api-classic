@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SliderComponent } from './components/Pages/slider/slider.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrderitemComponent } from './components/static/order-item/orderitem.component';
 import { CardsItemComponent } from './components/static/cards-item/cards-item.component';
 import { ProductsComponent } from './components/static/cards-item/products/products.component';
 import { CartComponent } from './components/static/cart/cart.component';
@@ -60,6 +61,7 @@ import { FilteritemsPipe } from './Pipe/search/filteritems.pipe';
     ModalComponent,
     SignupComponent,
     SliderComponent,
+    OrderitemComponent,
     CardsItemComponent,
     ProductsComponent,
     CartComponent,
