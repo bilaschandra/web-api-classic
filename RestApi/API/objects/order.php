@@ -298,12 +298,39 @@ class Order
             p.image_url,
             c.category,
             pa.color_option as color,
-            pa.varient
+            pa.varient,
+            CONCAT(u.FirstName, ' ', u.LastName) as name,
+            CONCAT(
+                o.billing_street_address, ', ',
+                o.billing_city_address, ', ',
+                o.billing_state_address, ', ',
+                o.billing_country_address, ', ',
+                o.billing_zip
+            ) as billing_address,
+            CONCAT(
+                o.shipping_street_address, ', ',
+                o.shipping_city_address, ', ',
+                o.shipping_state_address, ', ',
+                o.shipping_country_address, ', ',
+                o.shipping_zip
+            ) as shipping_address,
+            o.contact_number,
+            o.billing_street_address,
+            o.billing_city_address,
+            o.billing_state_address,
+            o.billing_country_address,
+            o.billing_zip,
+            o.shipping_street_address,
+            o.shipping_city_address,
+            o.shipping_state_address,
+            o.shipping_country_address,
+            o.shipping_zip
         FROM tbl_orders o 
         LEFT JOIN tbl_transactions t ON t.id = o.invoice_id
         LEFT JOIN tbl_product p ON p.id = o.product_id
         LEFT JOIN tbl_product_attribute pa ON pa.id = p.id
         LEFT JOIN tbl_category c ON c.id = p.category_id
+        LEFT JOIN tbl_user u ON u.UserID = o.user_id
         WHERE o.id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $orderId, PDO::PARAM_INT);

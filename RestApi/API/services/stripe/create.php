@@ -39,7 +39,7 @@ if (!empty($data->token) && is_numeric($data->Amount) && !empty($data->email))
       // Charge Customer
     $charge = \Stripe\Charge::create(array(
     "amount" => $Amount,
-    "currency" => "usd",
+    "currency" => "dk",
     "description" => $invoice_id,
     "customer" => $customer->id
     ));

@@ -5,17 +5,43 @@
                 <div (click)="closeModal()" class="close_div">
                     <img src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close">
                 </div>
-                <div class="text-center">
-                    <h2>{{ order.product_name }}</h2>
-                    <h5>Category: {{ order.category }}</h5>
-                    <h5>Vendor: {{ order.vendor }}</h5>
-                    <img class="media-object" [src]=order.image_url>
+                <div class="row">
+                    <div class="col borderRight">
+                        <div class="text-center">
+                            <h4>{{ order.product_name }}</h4>
+                            <div>Category: {{ order.category }}</div>
+                            <div>Vendor: {{ order.vendor }}</div>
+                            <img style="padding-top: 1em;" class="media-object" [src]=order.image_url>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h4>Order By</h4>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">Contact:</p>
+                                <footer *ngIf="order.name" class="blockquote-footer"><cite
+                                        title="Source Title">Name: {{ order.name }}</cite></footer>
+                                <footer class="blockquote-footer"><cite
+                                        title="Source Title">Number: {{ order.contact_number }}</cite></footer>
+                            </blockquote>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">Billing Address: </p>
+                                <footer class="blockquote-footer"><cite
+                                        title="Source Title">{{ order.billing_address }}</cite></footer>
+                            </blockquote>
+                            <blockquote class="blockquote">
+                                <p class="mb-0">Shipping Address: </p>
+                                <footer class="blockquote-footer"><cite
+                                        title="Source Title">{{ order.shipping_address }}</cite></footer>
+                            </blockquote>
+                        </div>
+                    </div>
                 </div>
                 <br />
                 <h6 style="word-break: break-all !important;">Invoice No: {{order.invoice_no}}</h6>
                 <div>
                     <table class="table table-bordered table-responsive-sm table-responsive-md">
-                        <thead>
+                        <thead class="thead-light">
                             <tr>
                                 <th>Color</th>
                                 <th>Varient</th>

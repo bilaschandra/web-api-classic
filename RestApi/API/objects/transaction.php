@@ -42,7 +42,7 @@ class Transaction extends Database
 
     public function getAllTransaction()
     {
-        $query = 'SELECT * FROM tbl_transactions ORDER BY id DESC';
+        $query = 'SELECT * FROM tbl_transactions ORDER BY transaction_date DESC';
         $stmt = $this
             ->conn
             ->prepare($query);

@@ -3,12 +3,17 @@
   height: 9vw;
 }
 
+@media (min-width: 768px) {
+  .borderRight {
+    border-right: 1px solid #dee2e6 !important;
+  }
+}
+
 .close_div {
   text-align: center;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Open Sans,sans-serif;
   color: #2a0b4c;
 }
 
@@ -16,7 +21,6 @@
   text-align: center;
   margin: 0;
   box-sizing: border-box;
-  font-family: Open Sans,sans-serif;
   color: #2a0b4c;
   width: 30px;
   border-radius: 50px;
