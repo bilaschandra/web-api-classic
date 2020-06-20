@@ -9,6 +9,7 @@
 
 # dependencies
 /node_modules
+proxy.conf.json
 
 # profiling files
 chrome-profiler-events*.json
