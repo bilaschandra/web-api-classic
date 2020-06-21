@@ -64,6 +64,18 @@ export class ProductService {
       );
   }
 
+  readProductAttrDetail(product_attribute_id){
+    var trimmedJSONObj = {
+      "id" : product_attribute_id      
+    }
+
+    return this.http
+      .post(Configuration.RestApiURL + "services/product/readproductattrdetail.php",trimmedJSONObj, this.httpextensions.httpOptions)
+      .pipe(
+        // Error handling to be added here
+      );
+  }
+
 
   read_detail(){
     

@@ -2,15 +2,15 @@ export class Transaction {
 
     constructor(private _id: string = "",
                 private _user_id: string = "",
-                private _address_id :string = "",    
+                private _address_id: string = "",    
                 private _invoice_no: string = "",
-                private _transaction_no :string = "",
+                private _transaction_no: string = "",
                 private _status: boolean = true,
-                private _Amount:number = null,
-                private _currency : string = "",
-                private _error_messaage :string = "",
-                private _success_message :string = "",
-                private _transaction_date :string =""
+                private _Amount: number = null,
+                private _currency: string = "",
+                private _error_messaage: string = "",
+                private _success_message: string = "",
+                private _transaction_date: string =""
                 ) { }
 
 
@@ -47,19 +47,18 @@ get success_message(): string { return this._success_message; }
 set transaction_date(_val: string) { this._transaction_date = _val; }
 get transaction_date(): string { return this._transaction_date; }
 
-public objcpy(    transaction: Transaction) {
+public objcpy(transaction: Transaction) {
     this._id = transaction.id;
     this._user_id = transaction.user_id;
     this._address_id = transaction.address_id;
     this._invoice_no = transaction.invoice_no;
     this._transaction_no =transaction.transaction_no;
     this._status = transaction.status;
-    this._Amount = transaction.Amount;
+    this._Amount = Number(transaction.Amount);
     this._currency = transaction.currency;
     this._error_messaage = transaction.error_messaage;
     this._success_message = transaction.success_message;
-    this._transaction_date = transaction.transaction_date
-
+    this._transaction_date = transaction.transaction_date;
 }
 
 public bindHttpJson(data: {}): void {

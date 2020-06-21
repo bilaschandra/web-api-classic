@@ -17,21 +17,21 @@ export class OrderService {
   constructor(private http: HttpClient, private session: SessionService) { this.httpextensions = new Httpextension(this.session); }
 
 
-  read(){
-  
+  read() {
+
     return this.http
-      .post(Configuration.RestApiURL + "services/order/read.php",  this.httpextensions.httpOptions)
+      .post(Configuration.RestApiURL + "services/order/read.php", this.httpextensions.httpOptions)
       .pipe(
         // Error handling to be added here
       );
   }
 
 
-  
-  delete(id){
+
+  delete(id) {
     var jsonorder_obj = {
       "id": id,
-     
+
     }
     return this.http
       .post(Configuration.RestApiURL + "services/order/delete.php", jsonorder_obj, this.httpextensions.httpOptions)
@@ -41,10 +41,10 @@ export class OrderService {
   }
 
 
-  readid(){
+  readid() {
     var jsonorder_obj = {
       "UserID": this.session.getUserId()
-     
+
     }
 
     return this.http
@@ -54,10 +54,10 @@ export class OrderService {
       );
   }
 
-  create(order_obj: Cart, userinfo: Userdetails,total,saveinfo,transaction:Transaction) {
+  create(order_obj: Cart, userinfo: Userdetails, total, saveinfo, transaction: Transaction) {
 
     var jsonorder_obj = {
-      "user_id":(this.session.getUserId()),
+      "user_id": (this.session.getUserId()),
       "product_id": Number(order_obj.id),
       "order_quantity": Number(order_obj.quantity),
       "contact_number": userinfo.contact_number.trim(),
@@ -72,15 +72,15 @@ export class OrderService {
       "shipping_country_address": userinfo.shipping_country_address.trim(),
       "shipping_zip": userinfo.shipping_zip.trim(),
       "varient_id": order_obj.variend_id.trim(),
-      "subtotal":total,
-      "saveinfo" : saveinfo,
+      "subtotal": total,
+      "saveinfo": saveinfo,
       // "inovice_no" :transaction.invocie_no,
       // "tarnsaction" : transaction.transaction_no,
       // "transaction_status" :transaction.status
-      "transaction" :transaction
+      "transaction": transaction
 
-    
-       }
+
+    }
 
     return this.http
       .post(Configuration.RestApiURL + "/services/order/create.php", jsonorder_obj, this.httpextensions.httpOptions)
@@ -105,10 +105,10 @@ export class OrderService {
   }
 
 
-  update(order_obj:Order) {
+  update(order_obj: Order) {
 
     var jsonorder_obj = {
-      "order_id" : Number(order_obj.id),
+      "order_id": Number(order_obj.id),
       "order_quantity": Number(order_obj.order_quantity),
       "contact_number": order_obj.contact_number.trim(),
       "billing_street_address": order_obj.billing_street_address.trim(),
@@ -121,13 +121,13 @@ export class OrderService {
       "shipping_state_address": order_obj.shipping_state_address.trim(),
       "shipping_country_address": order_obj.shipping_country_address.trim(),
       "shipping_zip": order_obj.shipping_zip.trim(),
-      "subtotal":Number(order_obj.order_total_price),
-      "issue_date" : order_obj.issue_date.trim(),
-      "delivered_date" : order_obj.delivered_date.trim(),      
-      "status" : order_obj.status,
-   
-      
-       }
+      "subtotal": Number(order_obj.order_total_price),
+      "issue_date": order_obj.issue_date.trim(),
+      "delivered_date": order_obj.delivered_date.trim(),
+      "status": order_obj.status,
+
+
+    }
 
     return this.http
       .post(Configuration.RestApiURL + "services/order/update.php", jsonorder_obj, this.httpextensions.httpOptions)
@@ -136,13 +136,23 @@ export class OrderService {
       );
   }
 
-  orderItemDetails(orderId){
+  orderItemDetails(orderId) {
     var jsonorder_obj = {
       "id": orderId,
     }
 
     return this.http
       .post(Configuration.RestApiURL + "services/order/details.php", jsonorder_obj, this.httpextensions.httpOptions)
+      .pipe();
+  }
+
+  orderItemDetailsByInvoice(invoiceNo) {
+    var jsonorder_obj = {
+      "invoice_no": invoiceNo,
+    }
+
+    return this.http
+      .post(Configuration.RestApiURL + "services/order/invoice.php", jsonorder_obj, this.httpextensions.httpOptions)
       .pipe();
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Transaction } from 'src/app/classes/transaction';
 import { TransactionService } from 'src/app/services/transaction/transaction.service';
 import { DatePipe } from '@angular/common';
+import { ModalService } from 'src/app/services/popup/modal.service';
 
 @Component({
   selector: 'app-admintransaction',
@@ -11,27 +12,39 @@ import { DatePipe } from '@angular/common';
 export class AdmintransactionComponent implements OnInit {
   @Input() type: string = "";
   public transaction: Transaction = new Transaction();
-  isedit: boolean = true;
+  islist: boolean = true;
+  isedit: boolean = false;
   public editTransaction: Transaction[] = new Array<Transaction>();
+  public invoices: any = [];
+  invoiceNo: string = '';
   opendd: number = -1;
   selected: string;
   filterValue: string;
 
   constructor(
     private transactionService: TransactionService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private modalService:ModalService
   ) {
-    this.getTransaction();
+    this.getTransactionInvoiceWise();
   }
 
   ngOnInit() { }
 
   selectedtab(value: string) {
     switch (value) {
+      case 'List':
+        this.getTransactionInvoiceWise();
+        this.islist = true;
+        this.isedit = false;
+        break;
       case 'Edit':
+        this.getTransaction();
+        this.islist = false;
         this.isedit = true;
         break;
       default:
+        this.islist = true;
         this.isedit = false;
         break;
     }
@@ -40,26 +53,21 @@ export class AdmintransactionComponent implements OnInit {
 
   getTransaction() {
     this.transactionService.getAllTransaction().subscribe(data => {
-      if (data['records'] == null)
-        return;
+      if (data['records']) {        
+        data['records'].forEach(element => {
+          const obj = new Transaction();
+          obj.objcpy({...element, transaction_date: this.dateFormate(element['transaction_date'])});
+          this.editTransaction.push(obj);
+        });
+      }
+    });
+  }
 
-      data['records'].forEach(element => {
-        this.editTransaction.push(
-          new Transaction(
-            element['id'],
-            element['user_id'],
-            element['address_id'],
-            element['invoice_no'],
-            element['transaction_no'],
-            element['status'],
-            element['Amount'],
-            element['currency'],
-            element['error_messaage'],
-            element['success_message'],
-            this.dateFormate(element['transaction_date']),
-          )
-        );
-      });
+  getTransactionInvoiceWise() {
+    this.transactionService.getAllTransactionInvoiceWise().subscribe(data => {
+      if (data) {        
+        this.invoices = data;
+      }
     });
   }
 
@@ -100,6 +108,15 @@ export class AdmintransactionComponent implements OnInit {
       var element = document.getElementById('add_' + catId);
       element.style.display = null;
     }
+  }
+
+  openInvoiceProductModal(Id: string, invoiceNo: string) {
+    this.invoiceNo = invoiceNo;
+    this.modalService.open(Id);
+  }
+
+  onCloseModalResetInvoiceId() {
+    this.invoiceNo = '';
   }
 
 }

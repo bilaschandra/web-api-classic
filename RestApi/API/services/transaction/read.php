@@ -14,21 +14,7 @@
 	$results['records'] = array();
 
 	foreach ($queryResults as $row) {
-		$data = array(
-			"id" => $row['id'],
-			"user_id" => $row['user_id'],
-			"address_id" => $row['address_id'],
-			"invoice_no" => $row['invoice_no'],
-			"transaction_no" => $row['transaction_no'],
-			"status" => $row['status'],
-			"Amount" => $row['Amount'],
-			"transaction_date" => $row['transaction_date'],
-			"error_meassge" => $row['error_meassge'],
-			"success_message" => $row['success_message'],
-			"currency" => $row['currency'],
-		);
-
-		array_push($results["records"], $data);
+		array_push($results["records"], $row);
 	}
 
 	http_response_code(200);

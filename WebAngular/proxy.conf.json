@@ -1,6 +1,6 @@
 {  
-      "/api": {  
-         "target": "http://localhost:8080/RestAPi/API/",
+      "/api": { 
+         "target": "http://dev.myapi.com/API",
          "secure": false,
          "pathRewrite": {
                "^/api": ""

@@ -11,30 +11,46 @@ import { Configuration } from 'src/app/classes/config/Configuration';
 })
 export class OrderitemComponent implements OnInit {
   public order: Order[] = new Array<Order>();
+  public products: any = [];
   @Input() orderId: number = 0;
+  @Input() invoiceNo: string = '';
   @Output() onCloseAction: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private orderservice: OrderService,
-    private modalService:ModalService
+    private modalService: ModalService
   ) { }
 
   ngOnInit() {
-    this.loadData();
+    if (this.orderId) {
+      this.loadData();
+    } else if (this.invoiceNo) {
+      this.loadProductsByInvoice();
+    }
   }
 
   loadData() {
     this.orderservice.orderItemDetails(this.orderId).subscribe(data => {
       if (data['records']) {
         data['records'].forEach(data => {
-          this.order = { ...data, image_url: Configuration.imagesURL+data['image_url'] };
+          this.order = { ...data, image_url: Configuration.imagesURL + data['image_url'] };
         });
       }
     });
   }
 
-  closeModal() {
-    this.modalService.close('productId');
+  loadProductsByInvoice() {
+    this.orderservice.orderItemDetailsByInvoice(this.invoiceNo).subscribe(data => {
+      if (data['records']) {
+        data['records'].forEach(data => {
+          this.products.push({ ...data, image_url: Configuration.imagesURL + data['image_url'] });
+        });
+      }
+    });
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
     this.onCloseAction.emit();
   }
 }

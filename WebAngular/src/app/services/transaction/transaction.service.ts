@@ -21,14 +21,17 @@ export class TransactionService {
 
     getAllTransaction() {
         return this.http
-            .post(Configuration.RestApiURL + "/services/transaction/read.php", this.httpextensions.httpOptions)
-            .pipe(
-                // Error handling to be added here
-            );
+            .get(Configuration.RestApiURL + "/services/transaction/read.php", this.httpextensions.httpOptions)
+            .pipe();
+    }
+
+    getAllTransactionInvoiceWise() {
+        return this.http
+            .get(Configuration.RestApiURL + "/services/transaction/invoice.php", this.httpextensions.httpOptions)
+            .pipe()
     }
 
     updateTransaction(transaction: Transaction) {
-        // only can update status of transaction
         const obj = {
             id: transaction.id,
             status: transaction.status,

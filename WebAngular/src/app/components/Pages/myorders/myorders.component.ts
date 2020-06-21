@@ -53,18 +53,16 @@ export class MyordersComponent implements AfterViewInit {
         Data['records'].forEach(element => {
           this.orders.push(new Order(element['id'], element['user_id'], element['product_id'], element['issue_date'], element['delivered_date'], element['status'], 
           element['order_quantity'], element['order_total_price'],"","","","","","","","","","","",element['invoice_id']))
-          this.readproductdetail(element['product_id']);
+          this.readproductdetail(element['product_attribute_id']);
           this.loadproducts(element['product_id']);
         });
       }
     });
-   
-    
   }
 
 
-  readproductdetail(product_id) {
-    this.productservice.readproductdetail(product_id).subscribe(Data => {
+  readproductdetail(product_attribute_id) {
+    this.productservice.readProductAttrDetail(product_attribute_id).subscribe(Data => {
       if (Data['records'] != null) {
         Data['records'].forEach(element => {
           this.productdetails.push(new Productattributes(
@@ -117,7 +115,6 @@ export class MyordersComponent implements AfterViewInit {
   }
 
   private refresh() {
-    console.log("refresh");
     this.dataSource.data = getorderinfo(this.orders, this.productdetails, this.products);
   }
 

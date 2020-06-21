@@ -37,7 +37,7 @@ $conn     = $database->getConnection();
      )
     {
     
-    $order->user_id                  = $data->user_id;
+    $order->user_id                  = (int)$data->user_id;
     $order->product_id               = $data->product_id;
     $order->order_quantity           = $data->order_quantity;
     $order->contact_number           = $data->contact_number;
@@ -54,28 +54,20 @@ $conn     = $database->getConnection();
     $order->varient_id               = $data->varient_id;
     $order->subtotal                 = $data->subtotal;
     $order->saveinfo                 = $data->saveinfo;
-    $order->inovice_no                 = $data->transaction->_invoice_no;
-    $order->transaction_no                 = $data->transaction->_transaction_no;
-    $order->transaction_status = $data->transaction->_status;
-    $order->currency = $data->transaction->_currency;
-    $order->error_message = $data->transaction->error_message;
-    $order->success_message = $data->transaction->_success_message;
-    $order->transaction_date = $data->transaction->_transaction_date;
-    
-    
+    $order->inovice_no               = $data->transaction->_invoice_no;
+    $order->transaction_no           = $data->transaction->_transaction_no;
+    $order->transaction_status       = $data->transaction->_status;
+    $order->currency                 = $data->transaction->_currency;
+    $order->error_message            = $data->transaction->_error_messaage;
+    $order->success_message          = $data->transaction->_success_message;
+    $order->transaction_date         = $data->transaction->_transaction_date;
+
     // create the product
     if ($order->create_new())
     {
-        
         http_response_code(200);
-    }
-    else
-    {
-        
-        http_response_code(503);
-        
         echo json_encode(array(
-            "message" => "Unable to create order."
+            "message" => "Order has been placed successfully."
         ));
     }
 }

@@ -1,8 +1,8 @@
 <div class="container rounded" style="background-color: white;">
     <div class="row">
-        <div class="col-md-12">
+        <div *ngIf="orderId" class="col-md-12">
             <div class="myform form">
-                <div (click)="closeModal()" class="close_div">
+                <div (click)="closeModal('productId')" class="close_div">
                     <img src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close">
                 </div>
                 <div class="row">
@@ -68,5 +68,69 @@
             </div>
 
         </div>
+        
+        <!-- ---------------------------------------------------------- -->
+
+        <div *ngIf="invoiceNo" class="col-md-12">
+            <div class="myform form">
+                <div (click)="closeModal('transactionId')" class="close_div">
+                    <img src="../../../../assets/cross.svg" id="login_close_icon" alt="close" class="close">
+                </div>
+                <div class="row">
+                    <div class="col border-bottom pb-3">
+                        <div class="text-center">
+                            <h4>Order By</h4>
+                            <div class="text-muted" *ngIf="products.length && products[0].name">
+                                <em>Name: {{ products[0].name }}</em>
+                            </div>
+                            <div class="text-muted" *ngIf="products.length && products[0].contact_number">
+                                <em>Contact Number: {{ products[0].contact_number }}</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row pt-3">
+                    <div class="col" *ngIf="products.length && products[0].invoice_no">
+                        <h6 style="word-break: break-all !important;">Invoice No: {{products[0].invoice_no}}</h6>
+                    </div>
+                    <div class="col" *ngIf="products.length && products[0].transaction_no">
+                        <h6 style="word-break: break-all !important;">Transaction No: {{products[0].transaction_no}}</h6>
+                    </div>
+                </div>
+                
+                <div>
+                    <table class="table table-bordered table-responsive-sm table-responsive-md">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Product</th>
+                                <th>Color</th>
+                                <th>Varient</th>
+                                <th>Order Date</th>
+                                <th>Deliver Date</th>
+                                <th>Status</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of products  | filter : selected : filterValue  ; ">
+                                <td>{{ item.product_name }}</td>
+                                <td>{{ item.color }}</td>
+                                <td>{{ item.varient }}</td>
+                                <td>{{ item.issue_date }}</td>
+                                <td>{{ item.delivered_date }}</td>
+                                <td>{{ item.status }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </div>

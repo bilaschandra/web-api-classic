@@ -1,10 +1,10 @@
- <?php
+<?php
 
 	header("Access-Control-Allow-Origin: *");
 	header("Content-Type: application/json; charset=UTF-8");
 
 	include_once '../../configration/database.php';
-    include_once '../../objects/order.php'; 
+    include_once '../../objects/product.php'; 
     
 	// instantiate database and product object
 	$database = new Database();
@@ -18,10 +18,10 @@
         // }
 
 	// initialize object
-	$order = new Order($db);
+	$product = new Product($db);
      
 	// query products
-	$stmt = $order->readid($data->UserID);
+	$stmt = $product->readproductattrdetail($data->id);
 	$num = $stmt->rowCount();
 
 	// check if more than 0 record found
@@ -39,17 +39,17 @@
 
 
 			$product_item=array(
-                "id" => $id ,
-                "user_id" => $user_id,
-                "product_id" => $product_id,              
-                "product_attribute_id" => $product_attribute_id,
-                "issue_date" => $issue_date,
-                "delivered_date" => $delivered_date, 
-                "status" => $orderstaus,
-                "order_quantity" => $order_quantity, 
-				"order_total_price" => $order_total_price,				
-				"invoice_id" => $invoice_no
-			 
+                "id" => $id,
+                "product_id" => $product_id,
+                "color_option" => $color_option,
+                "varient" => $varient,
+				"instock" => $instock,
+				"purchase_price" => $purchase_price,
+				"sell_price" => $sell_price,
+				"discount" => $discount,
+				"quantity" => $quantity
+                     
+				 
 			);
 
 			array_push($products_arr["records"], $product_item);

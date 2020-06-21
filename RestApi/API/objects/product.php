@@ -75,6 +75,15 @@ class Product
         $stmt->execute();
         return $stmt;
     }
+
+    function readproductattrdetail($id) {
+        $query = "SELECT * FROM tbl_product_attribute WHERE id  = :id; ";
+        $stmt  = $this->conn->prepare($query);
+        $id    = htmlspecialchars(strip_tags($id));
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        return $stmt;
+    }
     
     function readproductimages($id)
     {
