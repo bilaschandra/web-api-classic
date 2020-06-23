@@ -17,15 +17,17 @@
           </li>
         </ul>
         <div class="range">
-          <app-range (minrange)=receivemin($event) (maxrange)=receivemax($event) [(maxprice)]=maxprice></app-range>
+          <app-range (minrange)=receivemin($event) (maxrange)=receivemax($event) [maxprice]=maxprice></app-range>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-lg-10 col-sm-12 wrapper_card">
-    <app-slider [(category)]=selcategory [(selcategory_id)]=selcategory_id [(vendor_name)]=vendor_name [(cart)]="cart"
-      [(searchquery)]=searchquery [(lowerlimit)]=lowerlimit [(upperlimit)]=upperlimit></app-slider>
+    <app-slider></app-slider>
+
+    <app-cards-item [(selcategory)]=selcategory [(selcategory_id)]=selcategory_id [(vendor_name)]=vendor_name [(cart)]="cart"
+      [(searchquery)]=searchquery [(lowerlimit)]=lowerlimit [(upperlimit)]=upperlimit></app-cards-item>
   </div>
 
 </div>

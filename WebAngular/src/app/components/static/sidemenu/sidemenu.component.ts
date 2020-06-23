@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/crudcalls/category/category.service';
 import { ProductService } from 'src/app/services/crudcalls/products/product.service';
 import { Cart } from 'src/app/classes/cart';
+import { RangeComponent } from '../range/range.component';
 
 export type Config = {
   // selector?: String,
@@ -21,6 +21,9 @@ export type Config = {
 
 export class SidemenuComponent implements OnInit {
 
+  @ViewChild(RangeComponent, { static: false })
+  private rangeComponent: RangeComponent;
+
   @Input() cart: Cart[] = new Array<Cart>();
   @Input() searchquery :string;
   @Input() maxprice;
@@ -31,10 +34,8 @@ export class SidemenuComponent implements OnInit {
   @Input() opendd: number;
   selcategory_id: string;
   vendor_name: string;
-  upperlimit: number = 60000;
+  upperlimit: number = 0;
   lowerlimit: number = 0;
- 
-  
   
 
   constructor(private categoryservice: CategoryService, private productservice: ProductService) {   
@@ -103,6 +104,9 @@ export class SidemenuComponent implements OnInit {
       this.selcategory_id = "-1";
       this.selcategory  = "-1";
       this.vendor_name = "-1";
+      if (choice === null) {
+        this.rangeComponent.resetRangeFilter();
+      }
     } else {
       this.selcategory_id = choice.id;
       this.selcategory  = choice.category;
@@ -114,8 +118,8 @@ export class SidemenuComponent implements OnInit {
     this.vendor_name = vendor
   }
 
-  receivemax(manvalue){
-    this.upperlimit = manvalue;
+  receivemax(maxvalue){
+    this.upperlimit = maxvalue;
   }
   
   receivemin(minvalue){

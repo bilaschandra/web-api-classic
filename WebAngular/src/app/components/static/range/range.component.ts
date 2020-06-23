@@ -10,57 +10,48 @@ import { ProductService } from 'src/app/services/crudcalls/products/product.serv
 })
 
 export class RangeComponent implements OnInit {
-@Input() maxprice =-1;
-@Output() minrange = new EventEmitter<number>();
-@Output() maxrange = new EventEmitter<number>();
-minValue: number = 0;
-maxValue: number = 0;
-options: Options 
-  constructor() {}
+  @Input() maxprice = -1;
+  @Output() minrange = new EventEmitter<number>();
+  @Output() maxrange = new EventEmitter<number>();
+  minValue: number = 0;
+  maxValue: number = 0;
+  options: Options
+  constructor() { }
 
-  ngOnInit() {}
-  
-  
-  valueChange(value:number,label:string){
-    
-    switch (label) {
-      case 'min':
-        this.minrange.emit(Number(value) <= 0 ? 0 : value);
-      case 'max':          
-      this.maxrange.emit(Number(value) <= 0 ? 60000 : value);
-      default:
-       
-      
-    }
+  ngOnInit() {
   }
 
-  setmax(max){
+  setMax(max) {
     this.maxValue = max;
+    this.maxrange.emit(Number(max));
   }
 
-  getoptions(max){ 
-   
-     return  this.options =   {
+  setMin(min) {
+    this.minValue = min;
+    this.minrange.emit(Number(min));
+  }
+
+  getoptions(max) {
+
+    return this.options = {
       floor: 0,
       ceil: Number(max),
       translate: (value: number, label: LabelType): string => {
         switch (label) {
           case LabelType.Low:
-            
-            this.valueChange(value,"min")
-            return '<b>Min:</b> $' + value;
-          case LabelType.High:          
-              this.valueChange(value,"max")
-            return '<b>Max:</b> $' + value;
+            return '$' + value;
+          case LabelType.High:
+            return '$' + value;
           default:
             return '$' + value;
-          
         }
       }
     };
   }
 
-  
+  resetRangeFilter() {
+    this.setMax(Number(this.maxprice));
+    this.setMin(0);
+  }
 
-  
 }

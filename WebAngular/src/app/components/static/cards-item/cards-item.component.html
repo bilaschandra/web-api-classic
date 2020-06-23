@@ -1,6 +1,6 @@
  
     <div class="container text-center">
-        <div><h4 *ngIf="selcategory_id != '-1'" >{{category}}&nbsp; {{vendor_name}}</h4> </div>
+        <div><h4 *ngIf="selcategory_id != '-1'" >{{selcategory}}&nbsp; {{vendor_name}}</h4> </div>
         <div *ngFor="let product of (products     
         | seach : searchquery
         | filter : 'category_id' : selcategory_id 
@@ -20,6 +20,6 @@
                  [boundaryLinks]="true"></ngb-pagination>
         </div>
         
-        <div style="margin: auto;" *ngIf="products.length == 0"> <h6>No products for {{category}} category </h6></div>
+        <div style="margin: auto;" *ngIf="products.length == 0"> <h6>No products for {{selcategory}} category </h6></div>
  
     </div>
