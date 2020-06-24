@@ -61,7 +61,7 @@ export class CardsItemComponent implements OnInit {
 
         var temp_products = new Array<Product>();
         Data['records'].forEach(element => {
-          temp_products.push(new Product(element['id'], element['product_name'], element['category_id'], element['purchase_price'], Number(element['sell_price']), element['description'], element['vendor'], Configuration.imagesURL+element['image_url'], element['catergory'], element['instock'], element['discount'], element['create_date']));
+          temp_products.push(new Product(element['id'], element['product_name'], element['category_id'], element['purchase_price'], element['sell_price'], element['description'], element['vendor'], Configuration.imagesURL+element['image_url'], element['catergory'], element['instock'], element['discount'], element['create_date']));
         });
         this.products = null;
         this.products = temp_products;

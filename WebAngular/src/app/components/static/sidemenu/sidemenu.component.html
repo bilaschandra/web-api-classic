@@ -16,7 +16,7 @@
             </ul>
           </li>
         </ul>
-        <div class="range">
+        <div class="range" *ngIf="maxprice">
           <app-range (minrange)=receivemin($event) (maxrange)=receivemax($event) [maxprice]=maxprice></app-range>
         </div>
       </div>

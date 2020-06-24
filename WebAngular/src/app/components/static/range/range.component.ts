@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Options, LabelType } from 'ng5-slider';
-import { ProductService } from 'src/app/services/crudcalls/products/product.service';
+import { Options } from 'ng5-slider';
 
 @Component({
   selector: 'app-range',
@@ -15,10 +14,16 @@ export class RangeComponent implements OnInit {
   @Output() maxrange = new EventEmitter<number>();
   minValue: number = 0;
   maxValue: number = 0;
-  options: Options
+  options: Options;
+
   constructor() { }
 
   ngOnInit() {
+    this.options = {
+      floor: 0,
+      ceil: this.maxprice,
+      translate: (value: number): string => `$${value}`,
+    };
   }
 
   setMax(max) {
@@ -29,24 +34,6 @@ export class RangeComponent implements OnInit {
   setMin(min) {
     this.minValue = min;
     this.minrange.emit(Number(min));
-  }
-
-  getoptions(max) {
-
-    return this.options = {
-      floor: 0,
-      ceil: Number(max),
-      translate: (value: number, label: LabelType): string => {
-        switch (label) {
-          case LabelType.Low:
-            return '$' + value;
-          case LabelType.High:
-            return '$' + value;
-          default:
-            return '$' + value;
-        }
-      }
-    };
   }
 
   resetRangeFilter() {
