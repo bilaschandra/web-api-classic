@@ -8,9 +8,8 @@ include_once '../../objects/product.php';
 $database = new Database();
 $conn     = $database->getConnection();
 
-// JWT TOKEN VALIDATION
 $data = json_decode(file_get_contents("php://input"));
-// Public $image;
+
 
 
 $product = new Product($conn);
@@ -49,51 +48,4 @@ else {
 }
 
 
-// $filename = md5(uniqid());
-// $folderPathimage ="productimages/".$filename.".png";  
-// $orignal_image = create_thumbnail($image,0,0); 
-
-// function create_thumbnail($attr,$width,$height)
-// {
-//     $image = imagecreatefromstring(base64_decode($attr));          
-
-//         ob_start();
-//         if ($height != 0 && $width != 0)
-//         {
-//             $size_info2 = getimagesizefromstring(base64_decode($attr));
-//             $old_x = $size_info2[0];
-//             $old_y = $size_info2[1];
-
-//             if($old_x > $old_y) 
-//             {
-//                 $thumb_w =  $width;
-//                 $thumb_h =  $old_y*($height/$old_x);
-//             }
-        
-//             if($old_x < $old_y) 
-//             {
-//                 $thumb_w = $old_x*($width/$old_y);
-//                 $thumb_h = $height;
-//             }
-        
-//             if($old_x == $old_y) 
-//             {
-//                 $thumb_w = $width;
-//                 $thumb_h = $height;
-//             }
-
-//             $dst_img = ImageCreateTrueColor($thumb_w,$thumb_h);
-//             imagecopyresampled($dst_img,$image,0,0,0,0,$thumb_w,$thumb_h,$old_x,$old_y);
-//             $image = $dst_img;
-//             imagepng($image);
-//         }  
-//         else
-//         {
-//         imagepng($image);
-//         } 
-       
-//         $contents =  ob_get_contents();        
-//         ob_end_clean();  
-//         return $contents;
-// }
 ?>

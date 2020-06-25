@@ -77,9 +77,24 @@ export class CheckoutComponent implements OnInit {
     this.isshippingdifferernt = event.target.checked;
   }
 
-  confirmorder() {
+  async userCreate() {
+    if (this.userdetail.UserID) {
+      return;
+    }
+    const res = await this.userservice.createVisitorUser(this.user);
+    if (res && res['UserId']) {
+      this.userdetail.UserID = res['UserId'];
+      this.saveinfo = true;
+    };
+  }
 
-    this.cart.forEach(item => {
+  async confirmorder() {
+    await this.userCreate();
+
+    this.cart.forEach((item, i) => {
+      if (i !== 0 && this.saveinfo) {
+        this.saveinfo = false;
+      }
       this.placeorder(item, this.userdetail);
     });
 
@@ -98,15 +113,16 @@ export class CheckoutComponent implements OnInit {
     var myDate = formatDate(new Date(), 'dd/MM/yyyy', 'en');
     var stringmessage = ""
     var bodyheader = "Below are the details of your order <br>";
-    var reciverdetail = "<strong>Invoice No:</strong>" + this.transaction.invoice_no + " <br>" + "Ordered by :" + this.user.UserName + " <br>" + " Ordered date :" + myDate + "<br> Contact Number : " + userdetail.contact_number + "<br> Shipping Address : " + userdetail.shipping_street_address + " " + userdetail.shipping_city_address + " " +
+    var invoice_no = "<strong>Invoice No:</strong>" + this.transaction.invoice_no + " <br>"
+    var reciverdetail = "Ordered by :" + this.user.UserName + " <br>" + " Ordered date :" + myDate + "<br> Contact Number : " + userdetail.contact_number + "<br> Shipping Address : " + userdetail.shipping_street_address + " " + userdetail.shipping_city_address + " " +
       userdetail.shipping_state_address + " " + userdetail.shipping_country_address + " " + userdetail.shipping_zip;
-      var Emailfooter = " <br> Your order will be shipped in 3 working days" + " <br> Best regards," + " <br> BD Electronics." ;   
+    var Emailfooter = " <br> Your order will be shipped in 3 working days" + " <br> Best regards," + " <br> BD Electronics.";
 
     cart.forEach(c => {
       stringmessage = stringmessage + " Product :" + c.product_name + " <br> Varitent : " + c.varient + " <br> Color : " + c.color + " <br> Quantity : " + c.quantity + "<br> ";
 
     })
-    var messagebody = bodyheader + stringmessage + reciverdetail + Emailfooter;
+    var messagebody = invoice_no + bodyheader + stringmessage + reciverdetail + Emailfooter;
     this.orderservice.sendmail(messagebody, this.user.Email).subscribe();
   }
 
@@ -165,8 +181,9 @@ export class CheckoutComponent implements OnInit {
       locale: 'auto',
       token: async (token) => {
         this.user.Email = token.email;
-        this.createpayment(token)
+        this.createpayment(token);
       }
+
     });
 
 
@@ -180,8 +197,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   createpayment(token) {
-
-
 
     this.stripeservice.payment(token, this.user, this.subtotal).subscribe(data => {
       if (data != null && data['records'] != null) {
@@ -256,12 +271,12 @@ export class CheckoutComponent implements OnInit {
 
   getuser() {
     this.userservice.readuser().subscribe(data => {
-      if (data['records'] != null) {
+      if (data && data['records'] != null) {
         data['records'].forEach(element => {
           this.user.FirstName = element['FirstName'];
           this.user.LastName = element['LastName'];
           this.user.Email = element['Email'];
-          this.user.UserName = element['UserName'];          
+          this.user.UserName = element['UserName'];
         });
       }
     });
@@ -269,7 +284,7 @@ export class CheckoutComponent implements OnInit {
 
   getuserdetails() {
     this.userservice.readuserdetails().subscribe(data => {
-      if (data['records'] != null) {
+      if (data && data['records'] != null) {
         data['records'].forEach(element => {
           this.userdetail.id = element['id'];
           this.userdetail.UserID = element['UserID'];

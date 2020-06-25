@@ -56,26 +56,7 @@ export class Cart {
 
         
         set variend_id(_val: string) { this._variend_id = _val; }
-        get variend_id(): string { return this._variend_id; }
-
-
-        
-        public cpyobj (cart: Cart){
-            this._id= cart.id ;   
-            this._product_name= cart.product_name ;   
-            this._description = cart.description;
-            this._vendor = cart.vendor;
-            this._image_url = cart.image_url;
-            this._catergory = cart.catergory;
-            this._varient =cart.varient;
-            this._color =cart.color;
-            this._instock = cart.instock
-            this._sell_price= cart.sell_price ;
-            this._description= cart.description ;          
-            this._discount = cart.discount;
-            this._quantity = cart.quantity;
-            this._variend_id = cart.variend_id
-        }
+        get variend_id(): string { return this._variend_id; }    
 
 
         

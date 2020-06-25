@@ -147,4 +147,26 @@ export class UserService {
     );
 
   }
+
+  async createVisitorUser(user: User) {
+    var jsonobj = {
+      "UserName": user.UserName,
+      "FirstName": user.FirstName,
+      "LastName": user.LastName, 
+      "isForceCreate": 1,
+    }
+    return await this.http    
+      .post(Configuration.RestApiURL + "services/user/create.php", jsonobj, this.httpextensions.httpOptions)
+      .toPromise()
+      .then(
+        function (response: any) {
+          return {
+            UserId: response.UserId,
+          };
+        },
+        function (httpError) {
+           throw httpError.status + " : " +
+                 httpError.data;
+        });
+  }
 }

@@ -43,36 +43,6 @@ export class User {
     get isactive(): string { return this._isactive; }
 
 
-    public cpyobj(user: User) {
-        this._UserID = user.UserID;
-        this._User_role = user.User_role;
-        this._UserName = user.UserName;
-        this._Email = user.Email;
-        this._FirstName = user.FirstName;
-        this._LastName = user.LastName;
-        this._ProflieImage_url = user.ProflieImage_url;
-        this._password = user.password;
-        this._isactive = user.isactive;
-
-    }
-
-
-    public bindHttpJson(data: {}): void {
-        if (data["UserID"] != null) this.UserID = data["UserID"];
-        if (data["User_role"] != null) this.User_role = data["User_role"];
-        if (data["UserName"] != null) this.UserName = data["UserName"];
-        if (data["Email"] != null) this.Email = data["Email"];
-        if (data["FirstName"] != null) this.FirstName = data["FirstName"];
-        if (data["LastName"] != null) this.LastName = data["LastName"];
-        if (data["ProflieImage_url"] != null) this.ProflieImage_url = data["ProflieImage_url"];
-        if (data["isactive"] != null) this.ProflieImage_url = data["isactive"];
-        if (data["password"] != null) this.password = data["password"];
-     
-
-
-    }
-
-
-    
+       
 
 }

@@ -44,7 +44,6 @@ import { AdminuserComponent } from './components/Pages/dashboard/adminsidebar/ad
 import { AdminproductComponent } from './components/Pages/dashboard/adminsidebar/adminproduct/adminproduct.component';
 import { AdmintransactionComponent } from './components/Pages/dashboard/adminsidebar/admintransaction/admintransaction.component';
 import { DatePipe } from '@angular/common';
-import { PaymentmethodComponent } from './components/Pages/checkout/paymentmethod/paymentmethod.component';
 import { FooterComponent } from './components/Pages/footer/footer.component'; 
 import { SeachPipe } from './Pipe/search/seach.pipe';
 import { FilteritemsPipe } from './Pipe/search/filteritems.pipe';
@@ -69,7 +68,7 @@ import { FilteritemsPipe } from './Pipe/search/filteritems.pipe';
     CheckoutComponent,
     FilterPipe,
     ImageviewerComponent, RangeComponent, RangePipe, UserprofileComponent, MyordersComponent, DashboardComponent, AdminsidebarComponent, AdmincategoryComponent
-    , AdminorderComponent, AdminuserComponent, AdminproductComponent, PaymentmethodComponent, FooterComponent, SeachPipe, FilteritemsPipe,
+    , AdminorderComponent, AdminuserComponent, AdminproductComponent,  FooterComponent, SeachPipe, FilteritemsPipe,
     AdmintransactionComponent
 
   ],

@@ -1,3 +1,8 @@
+<!-- <div *ngIf="maxprice">
+<span  *ngIf="maxValue == 0">{{setmax(maxprice)}}</span>
+    <ng5-slider  [(value)]="minValue" [(highValue)]="maxValue" [options]=getoptions(maxprice)></ng5-slider>
+</div> -->
+
 <div *ngIf="maxprice">
     <span *ngIf="maxValue == 0">{{setMax(maxprice)}}</span>
     <ng5-slider (valueChange)=setMin($event) (highValueChange)=setMax($event) [(value)]="minValue"

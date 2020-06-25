@@ -1,14 +1,11 @@
 import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output, ViewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/crudcalls/category/category.service';
 import { ProductService } from 'src/app/services/crudcalls/products/product.service';
 import { Cart } from 'src/app/classes/cart';
 import { RangeComponent } from '../range/range.component';
 
-export type Config = {
-  // selector?: String,
-  multi?: boolean
-};
 
 
 @Component({
@@ -27,9 +24,7 @@ export class SidemenuComponent implements OnInit {
   @Input() cart: Cart[] = new Array<Cart>();
   @Input() searchquery :string;
   @Input() maxprice;
-  category = new Array<Category>();
-  config: Config;
-  options: Config = { multi: false };
+  category = new Array<Category>();  
   selcategory: string = "";
   @Input() opendd: number;
   selcategory_id: string;
@@ -55,22 +50,10 @@ export class SidemenuComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    
-    this.config = this.mergeConfig(this.options);
+  ngOnInit() {    
+   
   }
 
-  
-
-  mergeConfig(options: Config) {
-
-    const config = {
-      // selector: '#accordion',
-      multi: true
-    };
-
-    return { ...config, ...options };
-  }
 
  
 
@@ -112,10 +95,14 @@ export class SidemenuComponent implements OnInit {
       this.selcategory  = choice.category;
       this.vendor_name = "";
     }
+    console.log(this.selcategory);
+    console.log(this.selcategory_id );
+    
   }
 
   getvendorproducts(vendor){
     this.vendor_name = vendor
+    console.log(vendor);
   }
 
   receivemax(maxvalue){

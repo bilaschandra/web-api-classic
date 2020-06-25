@@ -2,8 +2,7 @@
     <div class="container text-center">
         <div><h4 *ngIf="selcategory_id != '-1'" >{{selcategory}}&nbsp; {{vendor_name}}</h4> </div>
         <div *ngFor="let product of (products     
-        | seach : searchquery
-        | filter : 'category_id' : selcategory_id 
+        | seach : searchquery         
         | filteritems : selcategory_id : vendor_name
         | range : 'sell_price' : lowerlimit : upperlimit
         | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize) "
@@ -12,7 +11,7 @@
         </div>
         <div *ngIf="products.length > 0" class="pagination_wrapper"> 
                  <ngb-pagination 
-                 [collectionSize]="(products | seach : searchquery | filter : 'category_id' : selcategory_id | filteritems : selcategory_id : vendor_name | range : 'sell_price' : lowerlimit : upperlimit).length " 
+                 [collectionSize]="(products | seach : searchquery | filteritems : selcategory_id : vendor_name | range : 'sell_price' : lowerlimit : upperlimit).length " 
                  [pageSize]="pageSize" 
                  [(page)]="page"
                  [maxSize]="5" [rotate]="true" 

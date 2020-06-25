@@ -178,6 +178,10 @@ body {
  // box-shadow:   0 8px 10px #d0cccc;
   cursor: pointer;
   line-height: 42px;
+  @media (max-width: 768px){    
+    margin-right: 23px;
+    margin-left: 29px;
+  }
   &:hover {
     background: #fe4066;
     color: white;
@@ -190,6 +194,11 @@ body {
   padding: 6px;
   border-radius: 50px;
   width: 31%;
+  @media (max-width: 768px){
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;   
+  }
   &:hover {
     background: #fe4066;
     color: white;   

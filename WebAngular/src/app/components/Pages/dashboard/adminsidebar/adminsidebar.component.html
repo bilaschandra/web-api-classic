@@ -22,10 +22,10 @@
     </div>
 </div>
 <div class="page-header" data-parallax="true" style="background-color: #fe4066;">
-
+    <app-adminuser [(type)]=type *ngIf="type == 'user'"></app-adminuser>
     <app-admincategory [(type)]=type *ngIf="type == 'category'"></app-admincategory>
     <app-adminorder [(type)]=type *ngIf="type == 'order'"></app-adminorder>
     <app-adminproduct [(type)]=type *ngIf="type == 'product'"></app-adminproduct>
-    <app-adminuser [(type)]=type *ngIf="type == 'user'"></app-adminuser>
+    <!-- <app-adminuser [(type)]=type *ngIf="type == 'user'"></app-adminuser> -->
     <app-admintransaction [(type)]=type *ngIf="type == 'transaction'"></app-admintransaction>
 </div>

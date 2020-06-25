@@ -31,7 +31,7 @@ else {
     
     http_response_code(400);
     echo json_encode(array(
-        "message" => "Unable to create order. Data is incomplete."
+        "message" => "Unable to delete user. Data is incomplete."
     ));
 }
 

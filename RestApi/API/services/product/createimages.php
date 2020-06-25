@@ -8,7 +8,7 @@ include_once '../../objects/product.php';
 $database = new Database();
 $conn     = $database->getConnection();
 
-// JWT TOKEN VALIDATION
+
 $data = json_decode(file_get_contents("php://input"));
 // Public $image;
 

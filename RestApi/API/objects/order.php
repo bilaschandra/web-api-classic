@@ -39,6 +39,11 @@ class Order
     public $error_message;
     public $success_message;
     public $transaction_date;
+    // user
+    public $User_role;
+    public $UserName;
+    public $FirstName;
+    public $LastName;
 
     public function __construct($db)
     {
@@ -77,52 +82,45 @@ class Order
 
         $this->conn->beginTransaction();
 
-        if ($this->saveinfo) {
-            $this->user_id = (int)$this->user_id;
-            $this->varient_id = (int)$this->varient_id;
-            $query = "SELECT * FROM tbl_user WHERE UserID = '$this->user_id';";
+        $this->varient_id = (int)$this->varient_id;
+        if ($this->saveinfo && $this->user_id) {
+            $query = " INSERT INTO `tbl_address` 
+                (`contact_number`,`UserID` ,`billing_street_address`, `billing_city_address`, `billing_state_address`, `billing_country_address`, `billing_zip`,
+                 `shipping_street_address`, `shipping_city_address`, `shipping_state_address`, `shipping_country_address`, `shipping_zip`) 
+    
+                VALUES (:contact_number,'$this->user_id', :billing_street_address, :billing_city_address, :billing_state_address, :billing_country_address, :billing_zip, 
+                :shipping_street_address, :shipping_city_address, :shipping_state_address, :shipping_country_address, :shipping_zip);";
+
             $stmt = $this->conn->prepare($query);
-            $stmt->execute();
-            if ($stmt->rowCount() == 0) {
+            $this->contact_number = htmlspecialchars(strip_tags($this->contact_number));
+            $this->billing_street_address = htmlspecialchars(strip_tags($this->billing_street_address));
+            $this->billing_city_address = htmlspecialchars(strip_tags($this->billing_city_address));
+            $this->billing_state_address = htmlspecialchars(strip_tags($this->billing_state_address));
+            $this->billing_country_address = htmlspecialchars(strip_tags($this->billing_country_address));
+            $this->billing_zip = htmlspecialchars(strip_tags($this->billing_zip));
+            $this->shipping_street_address = htmlspecialchars(strip_tags($this->shipping_street_address));
+            $this->shipping_city_address = htmlspecialchars(strip_tags($this->shipping_city_address));
+            $this->shipping_state_address = htmlspecialchars(strip_tags($this->shipping_state_address));
+            $this->shipping_country_address = htmlspecialchars(strip_tags($this->shipping_country_address));
+            $this->shipping_zip = htmlspecialchars(strip_tags($this->shipping_zip));
 
-                $query = " INSERT INTO `tbl_address` 
-                    (`contact_number`,`UserID` ,`billing_street_address`, `billing_city_address`, `billing_state_address`, `billing_country_address`, `billing_zip`,
-                     `shipping_street_address`, `shipping_city_address`, `shipping_state_address`, `shipping_country_address`, `shipping_zip`) 
-        
-                    VALUES (:contact_number,'$this->user_id', :billing_street_address, :billing_city_address, :billing_state_address, :billing_country_address, :billing_zip, 
-                    :shipping_street_address, :shipping_city_address, :shipping_state_address, :shipping_country_address, :shipping_zip);";
+            // bind values
+            $stmt->bindParam(":contact_number", $this->contact_number);
+            $stmt->bindParam(":billing_street_address", $this->billing_street_address);
+            $stmt->bindParam(":billing_city_address", $this->billing_city_address);
+            $stmt->bindParam(":billing_state_address", $this->billing_state_address);
+            $stmt->bindParam(":billing_country_address", $this->billing_country_address);
+            $stmt->bindParam(":billing_zip", $this->billing_zip);
+            $stmt->bindParam(":shipping_street_address", $this->shipping_street_address);
+            $stmt->bindParam(":shipping_city_address", $this->shipping_city_address);
+            $stmt->bindParam(":shipping_state_address", $this->shipping_state_address);
+            $stmt->bindParam(":shipping_country_address", $this->shipping_country_address);
+            $stmt->bindParam(":shipping_zip", $this->shipping_zip);
 
-                $stmt = $this->conn->prepare($query);
-                $this->contact_number = htmlspecialchars(strip_tags($this->contact_number));
-                $this->billing_street_address = htmlspecialchars(strip_tags($this->billing_street_address));
-                $this->billing_city_address = htmlspecialchars(strip_tags($this->billing_city_address));
-                $this->billing_state_address = htmlspecialchars(strip_tags($this->billing_state_address));
-                $this->billing_country_address = htmlspecialchars(strip_tags($this->billing_country_address));
-                $this->billing_zip = htmlspecialchars(strip_tags($this->billing_zip));
-                $this->shipping_street_address = htmlspecialchars(strip_tags($this->shipping_street_address));
-                $this->shipping_city_address = htmlspecialchars(strip_tags($this->shipping_city_address));
-                $this->shipping_state_address = htmlspecialchars(strip_tags($this->shipping_state_address));
-                $this->shipping_country_address = htmlspecialchars(strip_tags($this->shipping_country_address));
-                $this->shipping_zip = htmlspecialchars(strip_tags($this->shipping_zip));
-
-                // bind values
-                $stmt->bindParam(":contact_number", $this->contact_number);
-                $stmt->bindParam(":billing_street_address", $this->billing_street_address);
-                $stmt->bindParam(":billing_city_address", $this->billing_city_address);
-                $stmt->bindParam(":billing_state_address", $this->billing_state_address);
-                $stmt->bindParam(":billing_country_address", $this->billing_country_address);
-                $stmt->bindParam(":billing_zip", $this->billing_zip);
-                $stmt->bindParam(":shipping_street_address", $this->shipping_street_address);
-                $stmt->bindParam(":shipping_city_address", $this->shipping_city_address);
-                $stmt->bindParam(":shipping_state_address", $this->shipping_state_address);
-                $stmt->bindParam(":shipping_country_address", $this->shipping_country_address);
-                $stmt->bindParam(":shipping_zip", $this->shipping_zip);
-
-                if ($stmt->execute()) {
-                    $this->address_id = $this->conn->lastInsertId();
-                } else {
-                    echo json_encode(array("message" => "Unable to get address."));
-                }
+            if ($stmt->execute()) {
+                $this->address_id = $this->conn->lastInsertId();
+            } else {
+                echo json_encode(array("message" => "Unable to get address."));
             }
         }
 
@@ -143,7 +141,6 @@ class Order
             return fasle;
         }
 
-        $this->address_id = !empty($this->address_id) ? (int)$this->address_id : 0;
         $this->inovice_no = htmlspecialchars(strip_tags($this->inovice_no));
         $this->transaction_no = ($this->transaction_no);
         $this->transaction_status = $this->transaction_status == "true" ? 1 : 0;
@@ -153,8 +150,8 @@ class Order
         $this->success_message = htmlspecialchars(strip_tags($this->success_message));
         $this->transaction_date = htmlspecialchars(strip_tags($this->transaction_date));
 
-        $query = "INSERT INTO `tbl_transactions` (`user_id`, `address_id`, `invoice_no`, `transaction_no`, `status`, `Amount`, `transaction_date`, `error_meassge`, `success_message`, `currency`)
-                VALUES ('$this->user_id', '$this->address_id', '$this->inovice_no', '$this->transaction_no', b'$this->transaction_status','$this->subtotal','$this->transaction_date'
+        $query = "INSERT INTO `tbl_transactions` (`user_id`, `invoice_no`, `transaction_no`, `status`, `Amount`, `transaction_date`, `error_meassge`, `success_message`, `currency`)
+                VALUES ('$this->user_id', '$this->inovice_no', '$this->transaction_no', b'$this->transaction_status','$this->subtotal','$this->transaction_date'
                 ,'$this->error_message','$this->success_message','$this->currency')";
         $stmt = $this->conn->prepare($query);
         if ($stmt->execute()) {

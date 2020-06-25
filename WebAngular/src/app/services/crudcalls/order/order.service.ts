@@ -7,6 +7,7 @@ import { Cart } from 'src/app/classes/cart';
 import { Userdetails } from 'src/app/classes/userdetails';
 import { Order } from 'src/app/classes/order';
 import { Transaction } from 'src/app/classes/transaction';
+import { User } from 'src/app/classes/user';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,7 @@ export class OrderService {
   create(order_obj: Cart, userinfo: Userdetails, total, saveinfo, transaction: Transaction) {
 
     var jsonorder_obj = {
-      "user_id": (this.session.getUserId()),
+      "user_id": this.session.getUserId() || userinfo.UserID,
       "product_id": Number(order_obj.id),
       "order_quantity": Number(order_obj.quantity),
       "contact_number": userinfo.contact_number.trim(),

@@ -27,12 +27,7 @@
                                 <label for="validationproduct_name">Product Name</label>
                                 <input [(ngModel)]="product.product_name" type="text" class="form-control"
                                     id="validationproduct_name" placeholder="Prdouct  Name" required autocomplete="off">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please enter Product Name.
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="col">
@@ -40,12 +35,7 @@
                                 <label for="validationvendor">Vendor</label>
                                 <input [(ngModel)]="product.vendor" type="text" class="form-control"
                                     id="validationvendor" placeholder="Vendor" required autocomplete="off">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Please enter Vendor.
-                                </div>
+                               
                             </div>
                         </div>
                         <div class="col">
@@ -193,13 +183,39 @@
             <div *ngIf="isedit" [ngClass]="{'active': isedit, 'tab-pane': true}" id="Edit">
                 <div class="container">
                     <div class="table-wrapper">
-                        <div class="table-title">
+                        <!-- <div class="table-title">
                             <div class="row">
                                 <div class="col-sm-8">
                                     <h2>Products</h2>
                                 </div>
                             </div>
 
+                        </div> -->
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h2>Products</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                            <mat-option>None</mat-option>
+                                            <mat-option value="product_name">Product Name</mat-option>
+                                            <mat-option value="vendor">Vendor</mat-option>                                      
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <mat-form-field>
+                                        <input matInput [(ngModel)]="filterValue" placeholder="Filter">
+                                    </mat-form-field>
+                                </div>                               
+                            </div>
                         </div>
                         <table class="table table-bordered">
                             <thead>
@@ -214,7 +230,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let product of allproducts; ">
+                            <tbody *ngFor="let product of allproducts  | filter : selected : filterValue ; ">
                                 <tr>
                                     <td><img class="img_size" [src]=product.image_url alt=""></td>
                                     <td><input [(ngModel)]="product.product_name" [disabled]="opendd!=product.id" class="edituser" type="text" required autocomplete="off"></td>

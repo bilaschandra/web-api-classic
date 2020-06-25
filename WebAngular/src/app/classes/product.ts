@@ -61,39 +61,7 @@ export class Product {
 
         set create_date(_val : string){this._create_date = _val;}
         get create_date() : string {return this._create_date;}
-        
-         
-
-        public cpyobj (product: Product){
-            this._id= product.id ;   
-            this._product_name= product.product_name ;
-            this._category_id= product.category_id ;
-            this._purchase_price= product.purchase_price ;
-            this._sell_price= product.sell_price ;
-            this._description= product.description ;
-            this._vendor= product.vendor ;
-            this._image_url = product.image_url;
-            this._catergory = product.catergory;
-            this._instock = product.instock;
-            this._discount = product.discount;
-            this._create_date = product.create_date;
-        }
- 
-        public bindHttpJson(data : {}) : void {
-            if (data["id"] != null)        this.id = data["id"];
-                 
-                if (data["product_name"] != null)           this.product_name = data["product_name"];
-                if (data["category_id"] != null)            this.category_id = data["category_id"];
-                if (data["purchase_price"] != null)         this.purchase_price = data["purchase_price"];
-                if (data["sell_price"] != null)             this.sell_price = data["sell_price"];
-                if (data["description"] != null)            this.description = data["description"];
-                if (data["vendor"] != null)                 this.vendor = data["vendor"];
-                if (data["image_url"] != null)              this.image_url = data["image_url"];
-                if (data["catergory"] != null)              this.catergory = data["catergory"];
-                if (data["instock"] != null)                this.instock = data["instock"];             
-                if (data["discount"] != null)               this.discount = data["discount"];     
-                if (data["create_date"] != null)            this.create_date = data["create_date"];              
-        }     
+       
     }
 
   

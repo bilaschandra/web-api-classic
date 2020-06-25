@@ -112,18 +112,7 @@ export class ProductService {
       );
   }
 
-  search(searchquery) {
   
-    var trimmedJSONObj = {  
-      "search" : searchquery.trim()     
-    }
-
-    return this.http
-      .post(Configuration.RestApiURL + "services/product/search.php",trimmedJSONObj, this.httpextensions.httpOptions)
-      .pipe(
-        // Error handling to be added here
-      );
-  }
 
   getmaxprice() {
   

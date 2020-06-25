@@ -69,6 +69,11 @@ $conn     = $database->getConnection();
         echo json_encode(array(
             "message" => "Order has been placed successfully."
         ));
+    } else {
+        http_response_code(400);
+        echo json_encode(array(
+            "message" => "Unable to create order. Data is incomplete."
+        ));
     }
 }
 

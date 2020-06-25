@@ -37,7 +37,7 @@ if (
             $user->Hash = $password_hash;
         }
 
-    // create the product
+    // update user
     if ($user->updateuser($data->UserID)) {
         
         http_response_code(200);
@@ -46,7 +46,7 @@ if (
         http_response_code(503);
         
         echo json_encode(array(
-            "message" => "Unable to create order."
+            "message" => "Unable to update user."
         ));
     }
 }
@@ -55,7 +55,7 @@ else {
     
     http_response_code(400);
     echo json_encode(array(
-        "message" => "Unable to create order. Data is incomplete."
+        "message" => "Unable to update user. Data is incomplete."
     ));
 }
 

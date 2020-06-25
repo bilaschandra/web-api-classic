@@ -133,26 +133,7 @@ class Product
         return $stmt;
     }
     
-    function search($param)
-    {
-        // 
-        
-        $param = htmlspecialchars(strip_tags($param));
-        $query = "SELECT p.id,p.product_name,
-        c.id  AS category_id  ,a.purchase_price,a.sell_price,p.description,p.vendor,
-        p.image_url,c.category,a.instock,a.discount,p.create_date
-        FROM tbl_product p
-        JOIN tbl_category c ON c.id = p.category_id
-        JOIN tbl_product_attribute a ON a.product_id = p.id
-        WHERE p.product_name LIKE '%$param%' OR p.vendor LIKE '%$param%' OR p.description LIKE '%$param%'
-        GROUP BY p.id
-        ORDER BY p.create_date DESC;";
-        $stmt  = $this->conn->prepare($query);
-        $stmt->execute();
-        
-        return $stmt;
-        
-    }
+    
     
     
     function maxprice()

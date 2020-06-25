@@ -6,11 +6,6 @@ import { Configuration } from 'src/app/classes/config/Configuration';
 import { User } from 'src/app/classes/user';
 import { Router } from '@angular/router';
 
-export type Config = {
-  // selector?: String,
-  multi?: boolean
-};
-
 
 @Component({
   selector: 'app-adminsidebar',
@@ -19,16 +14,14 @@ export type Config = {
 })
 export class AdminsidebarComponent implements OnInit {
 
-  items: string[]= new Array<string>() ;
-  config: Config;
-  options: Config = { multi: false }
+  items: string[]= new Array<string>() ; 
   public opendd: number = 0;
-  type :string = 'category';
+  type :string = 'user';
   public profileimg = "http://trovacamporella.com/img/trovacamporella-fiat500.png";
   user: User = new User();
 
   constructor(private sessionservice :SessionService,private userservice:UserService,private router :Router) { 
-    this.items.push("Category","Order","User","Product","Transaction");
+    this.items.push("User","Order","Transaction","Category","Product");
     this.getuser();
   }
 
@@ -43,21 +36,8 @@ export class AdminsidebarComponent implements OnInit {
       this.opendd = id;  }
   }
 
-  ngOnInit() {
-    
-    this.config = this.mergeConfig(this.options);
-  }
-
-  
-
-  mergeConfig(options: Config) {
-
-    const config = {
-      // selector: '#accordion',
-      multi: true
-    };
-
-    return { ...config, ...options };
+  ngOnInit() {    
+   
   }
 
   optselected(value:string){

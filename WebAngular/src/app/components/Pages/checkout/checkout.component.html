@@ -56,20 +56,12 @@
                             placeholder="Username">
                     </div>
                 </div>
-
-                <!-- <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input [(ngModel)]="user.Email" type="email" class="form-control" id="email"
-                        placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-                </div> -->
+               
 
                 <div class="mb-3">
                     <label for="contact">Mobile Number</label>
                     <input [(ngModel)]="userdetail.contact_number" type="text" class="form-control" id="contact"
-                        placeholder="+xx xxx xxxxxxx"
+                        placeholder="+xx xxxxxxx"
                         (ngModelChange)="validate()"
                         [ngClass]="{ 'is-invalid': validation.contact_number }" required>
                     <div class="invalid-feedback" *ngIf="validation.contact_number">
@@ -99,7 +91,7 @@
                 <div class="mb-3">
                     <label for="address">Address</label>
                     <input [(ngModel)]="userdetail.billing_street_address" type="text" class="form-control" id="address"
-                        placeholder="1234 Main St"
+                        placeholder="kildeager 53"
                         (ngModelChange)="validate()"
                         [ngClass]="{ 'is-invalid': validation.billing_street_address }" required>
                     <div class="invalid-feedback" *ngIf="validation.billing_street_address">
@@ -154,7 +146,7 @@
                     <div class="mb-3">
                         <label for="address">Address</label>
                         <input [(ngModel)]="userdetail.shipping_street_address" type="text" class="form-control"
-                            id="address" placeholder="1234 Main St"
+                            id="address" placeholder="kildeager 53"
                             (ngModelChange)="validate()"
                             [ngClass]="{ 'is-invalid': validation.shipping_street_address }" required>
                         <div class="invalid-feedback" *ngIf="validation.shipping_street_address">

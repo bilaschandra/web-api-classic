@@ -1,4 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, AfterViewChecked, Input } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ModalService } from 'src/app/services/popup/modal.service'; 
+import { Cart } from 'src/app/classes/cart';
+ 
+
 
 export class Images {
   constructor(private _id: string,   
@@ -27,6 +32,13 @@ export class Images {
 })
 export class SliderComponent implements OnInit {
 
+/* @Input() category:string;
+@Input() cart: Cart[] = new Array<Cart>();
+@Input() vendor_name : string;
+@Input() selcategory_id : string;
+@Input() searchquery :string
+@Input() upperlimit: number;
+@Input() lowerlimit: number; */
 public imgsource :string ;
 images = new Array<Images>(); 
 

@@ -14,11 +14,11 @@ const routes: Routes = [
   {path: 'LandingPage', component: LandingpageComponent},
   {path :'test', component:SliderComponent},
   {path:'viewdetail',component:ProductdetailsComponent},
-    {path:'viewcart',component:CartComponent},
-    {path:'checkout',component:CheckoutComponent},
-    {path:'myorders',component:MyordersComponent},
-    {path:'myprofile',component:UserprofileComponent},
-    {path:'dashboard', component:DashboardComponent}
+  {path:'viewcart',component:CartComponent},
+  {path:'checkout',component:CheckoutComponent},
+  {path:'myorders',component:MyordersComponent},
+  {path:'myprofile',component:UserprofileComponent},
+  {path:'dashboard', component:DashboardComponent}
     
 ];
 

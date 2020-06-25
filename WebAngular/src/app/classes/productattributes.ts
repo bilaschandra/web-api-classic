@@ -41,32 +41,6 @@ export class Productattributes {
     get quantity(): number { return this._quantity; }
 
 
-    public cpyobj(productattributes: Productattributes) {
-
-        this._id = productattributes.id;
-        this._product_id = productattributes.product_id;
-        this._varient = productattributes.varient;
-        this._color = productattributes.color;
-        this._instock = productattributes.instock
-        this._purchase_price = productattributes.purchase_price;
-        this._sell_price = productattributes.sell_price;
-        this._discount = productattributes.discount;
-        this._quantity = productattributes.quantity;
-
-    }
-
-    public bindHttpJson(data: {}): void {
-        if (data["id"] != null) this.id = data["id"];
-        if (data["product_id"] != null) this.product_id = data["product_id"];
-        if (data["varient"] != null) this.varient = data["varient"];
-        if (data["color"] != null) this.color = data["colro"];
-        if (data["instock"] != null) this.instock = data["instock"];
-        if (data["purchase_price"] != null) this.purchase_price = data["purchase_price"];
-        if (data["sell_price"] != null) this.sell_price = data["sell_price"];
-        if (data["discount"] != null) this.discount = data["discount"];
-        if (data["quantity"] != null) this.quantity = data["quantity"];
-    }
-
 }
 
 
