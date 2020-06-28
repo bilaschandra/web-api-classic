@@ -87,6 +87,13 @@
                                         </mat-cell>
                                         <td mat-footer-cell *matFooterCellDef></td>
                                     </ng-container>
+                                    <ng-container matColumnDef="Quantity">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row"> {{row.Quantity}}
+                                        </mat-cell>
+                                        <td mat-footer-cell *matFooterCellDef></td>
+                                    </ng-container>
                                     <ng-container matColumnDef="Total">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
                                         <mat-cell *matCellDef="let row">$ {{row.Total}} </mat-cell>

@@ -22,7 +22,7 @@ import { StripeService } from 'src/app/services/crudcalls/stripeAPI/stripe.servi
 })
 export class MyordersComponent implements AfterViewInit {
  
-  displayedColumns = ['InoviceNo', 'Name', 'Vendor', 'Varient', 'Color', 'Status', 'OrderDate', "DeliverDate", 'Total'];
+  displayedColumns = ['InoviceNo', 'Name', 'Vendor', 'Varient', 'Color', 'Status', 'OrderDate', "DeliverDate", 'Quantity', 'Total'];
   displayedFooterColumns = ['InoviceNo'];
   public dataSource: MatTableDataSource<OrderInfo>;
   dataSource1: any;
@@ -139,6 +139,7 @@ function getorderinfo(cus_order: Order[], pd_attr: Productattributes[], product:
     temp.Status = cus_order[i].status;
     temp.OrderDate = cus_order[i].issue_date;
     temp.DeliverDate = cus_order[i].delivered_date;
+    temp.Quantity = cus_order[i].order_quantity;
     temp.Total = cus_order[i].order_total_price;
     orderinfo.push(temp);
   }
@@ -157,6 +158,7 @@ export class OrderInfo {
     private _Status: string = "",
     private _OrderDate: string = "",
     private _DeliverDate: string = "",
+    private _Quantity: string = "",
     private _Total: string = "") { }
 
   set InoviceNo(_val: string) { this._InoviceNo = _val; }
@@ -167,6 +169,7 @@ export class OrderInfo {
   set Status(_val: string) { this._Status = _val; }
   set OrderDate(_val: string) { this._OrderDate = _val; }
   set DeliverDate(_val: string) { this._DeliverDate = _val; }
+  set Quantity(_val: string) { this._Quantity = _val; }
   set Total(_val: string) { this._Total = _val; }
 
 
@@ -178,6 +181,7 @@ export class OrderInfo {
   get Status(): string { return this._Status; }
   get OrderDate(): string { return this._OrderDate; }
   get DeliverDate(): string { return this._DeliverDate; }
+  get Quantity(): string { return this._Quantity; }
   get Total(): string { return this._Total; }
 }
 
